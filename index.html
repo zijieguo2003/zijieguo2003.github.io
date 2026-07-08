@@ -121,13 +121,31 @@
     .badge-ccfb { border-color: #0f766e; color: #0f766e; }
 
     /* ── AWARDS ── */
-    .award-list { display: flex; flex-direction: column; }
+    .award-list { display: flex; flex-direction: column; gap: 6px; }
+    .award-featured {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px;
+      align-items: start; padding: 14px 16px; margin-bottom: 6px;
+      border: 1px solid #eef2f7; border-radius: 12px;
+      background: linear-gradient(135deg, #f8fbff 0%, #fff 72%);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .04);
+    }
+    .award-medal { font-size: 1.15rem; line-height: 1.4; }
+    .award-featured-title { font-size: .94rem; font-weight: 650; color: #1f2933; margin-bottom: 2px; }
+    .award-featured-title a { color: inherit; }
+    .award-featured-title a:hover { color: #1a73e8; text-decoration: none; }
+    .award-featured-meta { font-size: .78rem; color: #6b7280; }
+    .award-link { display: inline-flex; align-items: center; margin-top: 8px; font-size: .76rem; font-weight: 600; color: #1a73e8; }
+    .award-link:hover { text-decoration: none; }
+    .award-year-pill {
+      padding: 2px 8px; border-radius: 999px; background: #eff6ff;
+      color: #3b82f6; font-size: .72rem; font-weight: 600; white-space: nowrap;
+    }
     .award-row {
       display: flex; align-items: baseline; gap: 10px;
-      padding: 9px 0; border-bottom: 1px solid #f5f5f5; font-size: .88rem;
+      padding: 9px 2px; border-bottom: 1px solid #f5f5f5; font-size: .88rem;
     }
     .award-row:last-child { border-bottom: none; }
-    .award-bullet { color: #1a73e8; font-size: .65rem; flex-shrink: 0; }
+    .award-bullet { color: #cbd5e1; font-size: .65rem; flex-shrink: 0; }
     .award-name { flex: 1; color: #333; }
     .award-year { font-size: .76rem; color: #bbb; white-space: nowrap; }
 
@@ -156,6 +174,8 @@
       .exp-header { flex-direction: column; }
       .pub { grid-template-columns: 1fr; }
       .pub-num { display: none; }
+      .award-featured { grid-template-columns: auto 1fr; }
+      .award-year-pill { grid-column: 2; justify-self: start; }
     }
   </style>
 </head>
@@ -360,10 +380,16 @@
   <div class="sec" id="awards">
     <div class="sec-hd">荣誉奖项</div>
     <div class="award-list">
-      <div class="award-row">
-        <span class="award-bullet">▸</span>
-        <span class="award-name"><a href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">ACM MM EgoLink Challenge</a> 第三名 🥉</span>
-        <span class="award-year">2025</span>
+      <div class="award-featured">
+        <div class="award-medal">🥉</div>
+        <div>
+          <div class="award-featured-title">
+            <a href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">ACM MM EgoLink Challenge</a>
+          </div>
+          <div class="award-featured-meta">第三名 · ACM Multimedia Challenge</div>
+          <a class="award-link" href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+        </div>
+        <div class="award-year-pill">2025</div>
       </div>
       <div class="award-row">
         <span class="award-bullet">▸</span>
