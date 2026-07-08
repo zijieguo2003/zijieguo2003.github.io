@@ -90,15 +90,6 @@
     }
     .sec-hd::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-    .research-card {
-      padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px;
-      background: linear-gradient(135deg, var(--panel) 0%, #fff 80%);
-      box-shadow: 0 8px 24px rgba(15, 23, 42, .03);
-    }
-    .research-lead { font-size: .84rem; color: #444; line-height: 1.8; margin-bottom: 10px; }
-    .research-list { display: flex; flex-wrap: wrap; gap: 7px; }
-    .research-chip { font-size: .72rem; color: var(--accent); background: var(--accent-soft); border: 1px solid #dbeafe; border-radius: 999px; padding: 2px 8px; }
-
     /* ── EDUCATION ── */
     .edu-list { display: flex; flex-direction: column; }
     .edu-item {
@@ -231,7 +222,6 @@
   <div class="nav-inner">
     <span class="nav-brand">郭子杰</span>
     <ul class="nav-links">
-      <li><a href="#research">研究兴趣</a></li>
       <li><a href="#education">教育经历</a></li>
       <li><a href="#experience">研究与实习</a></li>
       <li><a href="#publications">学术论文</a></li>
@@ -250,7 +240,7 @@
     </div>
     <div>
       <div class="hero-name">郭子杰 <span class="hero-en">Zijie Guo</span></div>
-      <div class="hero-tagline">VRAG-RL · Agentic Search · Visual RAG</div>
+      <div class="hero-tagline">Agentic Search · Visual RAG</div>
       <div class="hero-pos">电子信息 硕士研究生</div>
       <div class="hero-aff">北京大学 · 软件与微电子学院</div>
       <p class="hero-blurb">Research interests: reinforcement-learning-driven retrieval/search agents, <strong>visual retrieval-augmented generation</strong>, and multimodal LLM systems.</p>
@@ -258,21 +248,6 @@
         <a href="mailto:zijieguo2003@163.com">✉ Email</a>
         <a href="https://github.com/namespcae" target="_blank">⊕ GitHub</a>
         <a href="https://blog.csdn.net/zjjaibc" target="_blank">✍ CSDN 博客</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 研究兴趣 -->
-  <div class="sec" id="research">
-    <div class="sec-hd">研究兴趣</div>
-    <div class="research-card">
-      <div class="research-lead">我近期关注以 <strong>VRAG-RL</strong> 展开的 agentic search 与 visual RAG：如何让多模态模型在复杂视觉/文本证据中主动检索、规划、验证，并通过强化学习提升搜索与推理质量。</div>
-      <div class="research-list">
-        <span class="research-chip">VRAG-RL</span>
-        <span class="research-chip">Agentic Search</span>
-        <span class="research-chip">Visual RAG</span>
-        <span class="research-chip">Multimodal LLMs</span>
-        <span class="research-chip">Retrieval-Augmented Reasoning</span>
       </div>
     </div>
   </div>
