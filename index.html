@@ -41,7 +41,7 @@
       height: 48px;
     }
     .nav-brand { font-weight: 600; font-size: .92rem; color: var(--text); }
-    .nav-links { display: flex; gap: 20px; list-style: none; }
+    .nav-links { display: flex; gap: 16px; list-style: none; }
     .nav-links a { font-size: .82rem; color: var(--muted); }
     .nav-links a:hover { color: var(--accent); text-decoration: none; }
 
@@ -65,7 +65,12 @@
     .hero-en { font-size: 1rem; color: var(--subtle); font-weight: 400; margin-left: 6px; }
     .hero-tagline { font-size: .86rem; color: var(--accent); font-weight: 600; margin: 9px 0 2px; }
     .hero-pos { font-size: .9rem; color: #444; margin: 2px 0; }
-    .hero-aff { font-size: .85rem; color: var(--muted); margin-bottom: 14px; }
+    .hero-aff { font-size: .85rem; color: var(--muted); margin-bottom: 8px; }
+    .hero-blurb {
+      max-width: 560px; margin: 0 0 14px;
+      font-size: .82rem; color: var(--muted); line-height: 1.75;
+    }
+    .hero-blurb strong { color: var(--text); font-weight: 650; }
     .hero-links { display: flex; flex-wrap: wrap; gap: 8px; }
     .hero-links a {
       display: inline-flex; align-items: center; gap: 4px;
@@ -78,25 +83,36 @@
     /* ── SECTION ── */
     .sec { padding: 38px 0 0; }
     .sec-hd {
+      display: flex; align-items: center; gap: 10px;
       font-size: .72rem; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: #999;
-      margin-bottom: 18px; padding-bottom: 8px;
-      border-bottom: 1px solid #eee;
+      margin-bottom: 18px;
     }
+    .sec-hd::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+    .research-card {
+      padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px;
+      background: linear-gradient(135deg, var(--panel) 0%, #fff 80%);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .03);
+    }
+    .research-lead { font-size: .84rem; color: #444; line-height: 1.8; margin-bottom: 10px; }
+    .research-list { display: flex; flex-wrap: wrap; gap: 7px; }
+    .research-chip { font-size: .72rem; color: var(--accent); background: var(--accent-soft); border: 1px solid #dbeafe; border-radius: 999px; padding: 2px 8px; }
 
     /* ── EDUCATION ── */
     .edu-list { display: flex; flex-direction: column; }
     .edu-item {
       display: grid; grid-template-columns: 150px 1fr;
-      gap: 0 20px; padding: 13px 0;
+      gap: 0 20px; padding: 14px 0;
       border-bottom: 1px solid #f5f5f5;
     }
     .edu-item:last-child { border-bottom: none; }
-    .edu-dates { font-size: .78rem; color: #aaa; padding-top: 2px; }
-    .edu-school { font-size: .93rem; font-weight: 600; }
+    .edu-dates { font-size: .76rem; color: var(--subtle); padding-top: 2px; }
+    .edu-school { font-size: .93rem; font-weight: 650; color: var(--text); }
     .edu-deg { font-size: .84rem; color: #555; margin: 2px 0; }
-    .edu-meta { font-size: .8rem; color: #777; }
-    .edu-courses { font-size: .76rem; color: #aaa; margin-top: 5px; line-height: 1.7; }
+    .edu-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 5px; font-size: .8rem; color: #777; }
+    .edu-meta-pill { font-size: .7rem; color: var(--muted); background: #f8fafc; border: 1px solid var(--line); border-radius: 999px; padding: 1px 7px; }
+    .edu-courses { font-size: .76rem; color: #aaa; margin-top: 6px; line-height: 1.7; }
     .tag-sm {
       display: inline-block; font-size: .64rem; padding: 1px 5px;
       border: 1px solid #1a73e8; border-radius: 3px;
@@ -215,6 +231,7 @@
   <div class="nav-inner">
     <span class="nav-brand">郭子杰</span>
     <ul class="nav-links">
+      <li><a href="#research">研究兴趣</a></li>
       <li><a href="#education">教育经历</a></li>
       <li><a href="#experience">研究与实习</a></li>
       <li><a href="#publications">学术论文</a></li>
@@ -233,13 +250,29 @@
     </div>
     <div>
       <div class="hero-name">郭子杰 <span class="hero-en">Zijie Guo</span></div>
-      <div class="hero-tagline">Multimodal AI · Vision-Language Models · Embodied Intelligence</div>
+      <div class="hero-tagline">VRAG-RL · Agentic Search · Visual RAG</div>
       <div class="hero-pos">电子信息 硕士研究生</div>
       <div class="hero-aff">北京大学 · 软件与微电子学院</div>
+      <p class="hero-blurb">Research interests: reinforcement-learning-driven retrieval/search agents, <strong>visual retrieval-augmented generation</strong>, and multimodal LLM systems.</p>
       <div class="hero-links">
         <a href="mailto:zijieguo2003@163.com">✉ Email</a>
         <a href="https://github.com/namespcae" target="_blank">⊕ GitHub</a>
         <a href="https://blog.csdn.net/zjjaibc" target="_blank">✍ CSDN 博客</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 研究兴趣 -->
+  <div class="sec" id="research">
+    <div class="sec-hd">研究兴趣</div>
+    <div class="research-card">
+      <div class="research-lead">我近期关注以 <strong>VRAG-RL</strong> 展开的 agentic search 与 visual RAG：如何让多模态模型在复杂视觉/文本证据中主动检索、规划、验证，并通过强化学习提升搜索与推理质量。</div>
+      <div class="research-list">
+        <span class="research-chip">VRAG-RL</span>
+        <span class="research-chip">Agentic Search</span>
+        <span class="research-chip">Visual RAG</span>
+        <span class="research-chip">Multimodal LLMs</span>
+        <span class="research-chip">Retrieval-Augmented Reasoning</span>
       </div>
     </div>
   </div>
@@ -263,7 +296,7 @@
         <div>
           <div class="edu-school">南京邮电大学 <span class="tag-sm">双一流</span></div>
           <div class="edu-deg">计算机科学与技术 · 本科</div>
-          <div class="edu-meta">专业排名 <strong>1 / 266</strong>（前 0.3%）&nbsp;·&nbsp; GPA <strong>4.63 / 5.0</strong>（96.3 / 100）</div>
+          <div class="edu-meta"><span class="edu-meta-pill">专业排名 1 / 266（前 0.3%）</span><span class="edu-meta-pill">GPA 4.63 / 5.0（96.3 / 100）</span></div>
           <div class="edu-courses">
             算法分析与设计 (100) · 计算机通信与网络 (100) · 数据库系统 (99) · 计算机组成原理 (99) · Python 与人工智能应用 (98) · 数据结构 (98) · 软件工程 (97) · 线性代数 (100) · 概率论 (100) · 高等数学 (100)
           </div>
