@@ -61,7 +61,7 @@
       display: flex; align-items: center; justify-content: center;
       overflow: hidden;
     }
-    .hero-name { font-size: 1.75rem; font-weight: 700; line-height: 1.2; }
+    .hero-name { font-family: Georgia, 'Times New Roman', serif; font-size: 1.8rem; font-weight: 700; line-height: 1.2; }
     .hero-en { font-size: 1rem; color: var(--subtle); font-weight: 400; margin-left: 6px; }
     .hero-tagline { font-size: .86rem; color: var(--accent); font-weight: 600; margin: 9px 0 2px; }
     .hero-pos { font-size: .9rem; color: #444; margin: 2px 0; }
@@ -196,6 +196,61 @@
     .skill-val { display: flex; flex-wrap: wrap; gap: 6px; color: #444; }
     .skill-chip { font-size: .72rem; color: var(--muted); background: #f8fafc; border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; }
 
+    /* ── DARK MODE ── */
+    :root[data-theme="dark"] {
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --subtle: #64748b;
+      --line: #1e293b;
+      --accent: #60a5fa;
+      --accent-soft: #1e3a5f;
+      --panel: #0f172a;
+    }
+    :root[data-theme="dark"] body { background: #0a0f1a; color: var(--text); }
+    :root[data-theme="dark"] nav { background: rgba(10,15,26,.92); border-bottom-color: #1e293b; }
+    :root[data-theme="dark"] .hero { border-bottom-color: #1e293b; }
+    :root[data-theme="dark"] .hero-photo { background: #1e2a3a; border-color: #2a3a50; }
+    :root[data-theme="dark"] .hero-links a { background: #111827; border-color: #1e293b; color: var(--muted); }
+    :root[data-theme="dark"] .hero-links a:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+    :root[data-theme="dark"] .pub { border-color: transparent; }
+    :root[data-theme="dark"] .pub:hover { background: #0f172a; border-color: #1e293b; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    :root[data-theme="dark"] .award-featured { background: linear-gradient(135deg, #0f172a 0%, #111827 72%); border-color: #1e293b; }
+    :root[data-theme="dark"] .tech-chip, :root[data-theme="dark"] .skill-chip, :root[data-theme="dark"] .edu-meta-pill { background: #111827; border-color: #1e293b; color: var(--muted); }
+    :root[data-theme="dark"] .edu-item, :root[data-theme="dark"] .exp-item, :root[data-theme="dark"] .award-row, :root[data-theme="dark"] .skill-row { border-bottom-color: #1e293b; }
+    :root[data-theme="dark"] footer { border-top-color: #1e293b; color: #334155; }
+    :root[data-theme="dark"] .tag-sm { border-color: var(--accent); color: var(--accent); }
+    :root[data-theme="dark"] .exp-item::before { background: #1e293b; }
+    :root[data-theme="dark"] .exp-item::after { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --text: #e2e8f0; --muted: #94a3b8; --subtle: #64748b;
+        --line: #1e293b; --accent: #60a5fa; --accent-soft: #1e3a5f; --panel: #0f172a;
+      }
+      :root:not([data-theme="light"]) body { background: #0a0f1a; }
+      :root:not([data-theme="light"]) nav { background: rgba(10,15,26,.92); border-bottom-color: #1e293b; }
+      :root:not([data-theme="light"]) .hero { border-bottom-color: #1e293b; }
+      :root:not([data-theme="light"]) .hero-photo { background: #1e2a3a; border-color: #2a3a50; }
+      :root:not([data-theme="light"]) .hero-links a { background: #111827; border-color: #1e293b; color: var(--muted); }
+      :root:not([data-theme="light"]) .hero-links a:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+      :root:not([data-theme="light"]) .pub:hover { background: #0f172a; border-color: #1e293b; }
+      :root:not([data-theme="light"]) .award-featured { background: linear-gradient(135deg, #0f172a 0%, #111827 72%); border-color: #1e293b; }
+      :root:not([data-theme="light"]) .tech-chip, :root:not([data-theme="light"]) .skill-chip, :root:not([data-theme="light"]) .edu-meta-pill { background: #111827; border-color: #1e293b; color: var(--muted); }
+      :root:not([data-theme="light"]) .edu-item, :root:not([data-theme="light"]) .exp-item, :root:not([data-theme="light"]) .award-row, :root:not([data-theme="light"]) .skill-row { border-bottom-color: #1e293b; }
+      :root:not([data-theme="light"]) footer { border-top-color: #1e293b; color: #334155; }
+      :root:not([data-theme="light"]) .tag-sm { border-color: var(--accent); color: var(--accent); }
+      :root:not([data-theme="light"]) .exp-item::before { background: #1e293b; }
+      :root:not([data-theme="light"]) .exp-item::after { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+    }
+
+    /* ── THEME TOGGLE (Lilian Weng style) ── */
+    #theme-toggle {
+      background: none; border: none; cursor: pointer; padding: 4px 6px;
+      color: var(--muted); font-size: .88rem; line-height: 1;
+      border-radius: 6px; transition: color .2s, background .2s;
+    }
+    #theme-toggle:hover { color: var(--text); background: var(--accent-soft); }
+
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid #eee; margin-top: 52px;
@@ -227,6 +282,7 @@
       <li><a href="#publications">学术论文</a></li>
       <li><a href="#awards">荣誉奖项</a></li>
       <li><a href="#skills">技能</a></li>
+      <li><button id="theme-toggle" title="切换深色模式" aria-label="切换深色模式">🌙</button></li>
     </ul>
   </div>
 </nav>
@@ -483,6 +539,29 @@
 </div>
 
 <footer>最后更新：2026 年 3 月 &nbsp;·&nbsp; 郭子杰</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var btn = document.getElementById('theme-toggle');
+    var saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+    function sync() {
+      var isDark = (root.getAttribute('data-theme') === 'dark') ||
+        (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      btn.textContent = isDark ? '☀' : '🌙';
+    }
+    sync();
+    btn.addEventListener('click', function () {
+      var current = root.getAttribute('data-theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+      sync();
+    });
+  })();
+</script>
 
 </body>
 </html>
