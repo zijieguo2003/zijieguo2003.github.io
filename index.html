@@ -1,26 +1,70 @@
 <!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>郭子杰的个人主页</title>
+  <title>郭子杰（Zijie Guo）｜Agentic Search · Visual RAG</title>
+  <meta name="description" content="郭子杰，北京大学电子信息硕士研究生，研究方向包括强化学习驱动的检索与搜索智能体、Visual RAG 和多模态大模型。" />
+  <meta name="author" content="郭子杰（Zijie Guo）" />
+  <meta name="theme-color" id="theme-color" content="#fbfaf7" />
+  <link rel="canonical" href="https://zijieguo2003.github.io/" />
+  <link rel="icon" type="image/png" href="avatar.png" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:title" content="郭子杰（Zijie Guo）｜Agentic Search · Visual RAG" />
+  <meta property="og:description" content="北京大学电子信息硕士研究生，研究方向包括强化学习驱动的检索与搜索智能体、Visual RAG 和多模态大模型。" />
+  <meta property="og:url" content="https://zijieguo2003.github.io/" />
+  <meta property="og:image" content="https://zijieguo2003.github.io/avatar.png" />
+  <meta name="twitter:card" content="summary" />
   <script>
     (function () {
       try {
         var saved = localStorage.getItem('theme');
-        if (saved) document.documentElement.setAttribute('data-theme', saved);
-      } catch (e) {}
+        var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        var theme = saved === 'dark' || saved === 'light' ? saved : preferred;
+        document.documentElement.setAttribute('data-theme', theme);
+        document.getElementById('theme-color').setAttribute('content', theme === 'dark' ? '#111416' : '#fbfaf7');
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
     })();
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "郭子杰",
+      "alternateName": "Zijie Guo",
+      "url": "https://zijieguo2003.github.io/",
+      "email": "mailto:zijieguo2003@163.com",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "北京大学"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "南京邮电大学"
+      },
+      "sameAs": [
+        "https://github.com/zijieguo2003",
+        "https://blog.csdn.net/zjjaibc"
+      ],
+      "knowsAbout": [
+        "Agentic Search",
+        "Visual Retrieval-Augmented Generation",
+        "Multimodal Large Language Models"
+      ]
+    }
   </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; color-scheme: light; }
+    html { scroll-behavior: smooth; color-scheme: light; scrollbar-gutter: stable; }
     :root {
       --bg: #fbfaf7;
       --nav-bg: rgba(251,250,247,.92);
       --text: #1d252c;
       --muted: #56616b;
-      --subtle: #6f7a84;
+      --subtle: #68737c;
       --line: #dde1e2;
       --accent: #1f5b85;
       --accent-soft: #e8f0f5;
@@ -36,18 +80,27 @@
       transition: color .2s ease, background .2s ease;
     }
 
-    a { color: var(--accent); text-decoration: none; text-underline-offset: 3px; }
+    ::selection { color: var(--text); background: var(--accent-soft); }
+    a { color: var(--accent); text-decoration: none; text-underline-offset: 3px; transition: color .16s ease; }
     a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
     }
     .sec { scroll-margin-top: 76px; }
+    .skip-link {
+      position: fixed; top: 10px; left: 12px; z-index: 100;
+      padding: 8px 12px; color: var(--bg); background: var(--text); border-radius: 6px;
+      transform: translateY(-150%); transition: transform .16s ease;
+    }
+    .skip-link:focus { transform: translateY(0); }
+    main:focus { outline: none; }
 
     /* ── NAV ── */
     nav {
       position: sticky; top: 0; z-index: 50;
       background: var(--nav-bg);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
     }
     .nav-inner {
@@ -212,8 +265,8 @@
       .nav-brand { min-height: 56px; display: inline-flex; align-items: center; }
       .nav-actions { margin-left: auto; }
       #menu-toggle { display: inline-flex; }
-      .nav-links { order: 3; flex-basis: calc(100% + 40px); margin: 0 -20px; padding: 0 20px; max-height: 0; overflow: hidden; opacity: 0; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid transparent; transition: max-height .24s ease, opacity .18s ease, padding .24s ease, border-color .24s ease; }
-      .nav-links.is-open { max-height: 320px; opacity: 1; padding-top: 8px; padding-bottom: 12px; border-top-color: var(--line); }
+      .nav-links { order: 3; flex-basis: calc(100% + 40px); margin: 0 -20px; padding: 0 20px; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid transparent; transition: max-height .24s ease, opacity .18s ease, padding .24s ease, border-color .24s ease, visibility 0s linear .24s; }
+      .nav-links.is-open { max-height: 320px; opacity: 1; visibility: visible; pointer-events: auto; padding-top: 8px; padding-bottom: 12px; border-top-color: var(--line); transition-delay: 0s; }
       .nav-links a { display: block; min-height: 44px; padding: 10px 2px; font-size: .9rem; }
       .page { padding-left: 20px; padding-right: 20px; }
       .hero { grid-template-columns: 82px 1fr; gap: 18px; padding: 34px 0 36px; }
@@ -241,19 +294,30 @@
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
     }
+
+    @media print {
+      :root, :root[data-theme="dark"] {
+        --bg: #fff; --text: #111; --muted: #333; --subtle: #555;
+        --line: #ccc; --accent: #111; --panel: #fff;
+      }
+      nav, .skip-link, .nav-actions { display: none !important; }
+      body { font-size: 10.5pt; background: #fff; }
+      .page { max-width: none; padding: 0; }
+      .hero { padding: 0 0 18px; }
+      .sec { padding-top: 26px; }
+      .edu-item, .exp-item, .pub, .award-featured, .award-row, .skill-row { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+      footer { margin-top: 32px; }
+    }
   </style>
 </head>
-<body>
+<body id="top">
+
+<a class="skip-link" href="#main-content">跳至主要内容</a>
 
 <nav aria-label="页面导航">
   <div class="nav-inner">
     <a class="nav-brand" href="#top">郭子杰</a>
-    <div class="nav-actions">
-      <button class="nav-control" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">目录</button>
-      <button class="nav-control" id="theme-toggle" type="button" title="切换至深色模式" aria-label="切换至深色模式">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-      </button>
-    </div>
     <ul class="nav-links" id="nav-links">
       <li><a href="#education">教育经历</a></li>
       <li><a href="#experience">研究与实习</a></li>
@@ -261,26 +325,33 @@
       <li><a href="#awards">荣誉奖项</a></li>
       <li><a href="#skills">技能</a></li>
     </ul>
+    <div class="nav-actions">
+      <button class="nav-control" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">目录</button>
+      <button class="nav-control" id="theme-toggle" type="button" title="切换至深色模式" aria-label="切换至深色模式">
+        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
-<main class="page" id="top">
+<main class="page" id="main-content" tabindex="-1">
 
   <!-- HERO -->
   <header class="hero">
     <div class="hero-photo">
-      <img src="avatar.png" alt="郭子杰的头像" />
+      <img src="avatar.png" alt="郭子杰的头像" width="112" height="112" decoding="async" fetchpriority="high" />
     </div>
     <div class="hero-main">
       <h1 class="hero-name">郭子杰 <span class="hero-en">Zijie Guo</span></h1>
       <div class="hero-identity">北京大学 · 电子信息硕士研究生</div>
-      <div class="hero-tagline">Agentic Search · Visual RAG</div>
+      <div class="hero-tagline">Agentic Search · Visual RAG · Multimodal LLMs</div>
     </div>
-    <p class="hero-blurb">Research interests: reinforcement-learning-driven retrieval/search agents, <strong>visual retrieval-augmented generation</strong>, and multimodal LLM systems.</p>
+    <p class="hero-blurb">研究方向：强化学习驱动的检索与搜索智能体、<strong>视觉检索增强生成（Visual RAG）</strong>，以及多模态大模型系统。</p>
     <div class="hero-links">
       <a href="mailto:zijieguo2003@163.com">Email</a>
-      <a href="https://github.com/namespcae" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://blog.csdn.net/zjjaibc" target="_blank" rel="noopener noreferrer">CSDN 博客</a>
+      <a href="https://github.com/zijieguo2003" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="/blog/">技术博客</a>
+      <a href="https://blog.csdn.net/zjjaibc" target="_blank" rel="noopener noreferrer">CSDN</a>
     </div>
   </header>
 
@@ -294,7 +365,7 @@
         <div>
           <div class="edu-school">北京大学 <span class="tag-sm">985 · 双一流</span></div>
           <div class="edu-deg">软件与微电子学院 · 电子信息 · 硕士</div>
-          <div class="edu-courses">大语言模型后训练实践 · 深度学习技术及应用 · CS336 进度（1/18）</div>
+          <div class="edu-courses">相关课程：大语言模型后训练实践 · 深度学习技术及应用</div>
         </div>
       </div>
 
@@ -303,9 +374,9 @@
         <div>
           <div class="edu-school">南京邮电大学 <span class="tag-sm">双一流</span></div>
           <div class="edu-deg">计算机科学与技术 · 本科</div>
-          <div class="edu-meta"><span>专业排名 1 / 266（前 0.3%）</span><span>GPA 4.63 / 5.0（96.3 / 100）</span></div>
+          <div class="edu-meta"><span>专业排名 1 / 266</span><span>GPA 4.63 / 5.0（96.3 / 100）</span></div>
           <div class="edu-courses">
-            算法分析与设计 (100) · 计算机通信与网络 (100) · 数据库系统 (99) · 计算机组成原理 (99) · Python 与人工智能应用 (98) · 数据结构 (98) · 软件工程 (97) · 线性代数 (100) · 概率论 (100) · 高等数学 (100)
+            代表课程：算法分析与设计（100） · Python 与人工智能应用（98） · 数据结构（98） · 线性代数（100） · 概率论（100） · 高等数学（100）
           </div>
         </div>
       </div>
@@ -342,23 +413,10 @@
         </div>
         <div class="exp-role">LLM 后训练 · Agent 工程 · RAG · 北京</div>
         <ul class="exp-detail">
-          <li><strong>后训练全流程：</strong>针对风控模型指令遵循弱、话术不专业的问题，对 QwQ-32B 进行 LoRA SFT + GRPO RL 训练；设计基于 pass@8 的分层数据筛选流水线，提取 4790 条带思维链 QA 对；最终模型在真实风控数据集准确率达 <strong>92.9%</strong>（基座 89.8%）</li>
+          <li><strong>后训练全流程：</strong>针对风控模型指令遵循弱、话术不专业的问题，对 QwQ-32B 进行 LoRA SFT + GRPO RL 训练；设计基于 pass@8 的分层数据筛选流水线，提取 4,790 条带思维链 QA 对；最终模型在真实风控数据集准确率达 <strong>92.9%</strong>（基座 89.8%）</li>
           <li><strong>Agent 工作流：</strong>面向客诉人工审核效率低的痛点，基于 Dify 搭建模块化审核流，引入 RAG 混合检索（BM25 + 稠密，α=0.3）并构建动态案例库；将审核准确率从 81% 提升至 <strong>95%+</strong></li>
         </ul>
-        <div class="exp-tech"><span class="tech-chip">LLaMA-Factory</span><span class="tech-chip">Verl / GRPO</span><span class="tech-chip">LoRA</span><span class="tech-chip">Dify</span><span class="tech-chip">Docker</span></div>
-      </div>
-
-      <div class="exp-item">
-        <div class="exp-header">
-          <span class="exp-org">北京大数据先进技术研究院 · 研究实习生</span>
-          <span class="exp-dates">2025.04 — 2025.08</span>
-        </div>
-        <div class="exp-role">领域大模型后训练 · 数据工程 · 北京</div>
-        <ul class="exp-detail">
-          <li><strong>训练策略：</strong>提出"增量预训练（CPT）+ 两阶段混合指令微调（DMT）"方案，通过法律/通用数据配比消融实验验证 DMT 优于顺序训练；最终模型立法评测集达 <strong>92.66 分</strong>（基座 48.13，提升 92.5%）</li>
-          <li><strong>数据 Pipeline：</strong>构建千万 Token 中英混合语料库，引入 MGA 方法利用 DeepSeek-V3 蒸馏多样化指令数据，设计 PDF/Word 到结构化语料的自动化清洗流水线</li>
-        </ul>
-        <div class="exp-tech"><span class="tech-chip">LLaMA-Factory</span><span class="tech-chip">DeepSpeed</span><span class="tech-chip">LoRA</span><span class="tech-chip">OpenCompass</span></div>
+        <div class="exp-tech"><span class="tech-chip">LLaMA-Factory</span><span class="tech-chip">veRL / GRPO</span><span class="tech-chip">LoRA</span><span class="tech-chip">Dify</span><span class="tech-chip">Docker</span></div>
       </div>
 
       <div class="exp-item">
@@ -369,8 +427,21 @@
         <div class="exp-role">Multi-Agent · Deep Research · 异构数据检索 · <a href="https://arxiv.org/abs/2510.01553" target="_blank" rel="noopener noreferrer">论文</a> · <a href="https://github.com/pkuNuclearGroup/IoDResearch" target="_blank" rel="noopener noreferrer">GitHub</a></div>
         <ul class="exp-detail">
           <li>提出 <strong>IoDResearch</strong> 框架（ICASSP 2026 Poster，CCF-B，第二作者），构建三层 IoD 异构图表示，设计 Planner-Worker-Reporter 三层 Multi-Agent 架构，支持多粒度检索、迭代检索与 Reflection 机制</li>
-          <li>在检索、QA 及报告生成三项任务上全面超越 NaiveRAG、LightRAG、DeepSearcher；构建首个 IoD DeepResearch Benchmark（500+ 文档，约 6M Tokens，1060 道评测题）</li>
+          <li>在检索、QA 及报告生成三项任务上全面超越 NaiveRAG、LightRAG、DeepSearcher；构建首个 IoD Deep Research Benchmark（500+ 文档，约 600 万 tokens，1,060 道评测题）</li>
         </ul>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-header">
+          <span class="exp-org">北京大数据先进技术研究院 · 研究实习生</span>
+          <span class="exp-dates">2025.04 — 2025.08</span>
+        </div>
+        <div class="exp-role">领域大模型后训练 · 数据工程 · 北京</div>
+        <ul class="exp-detail">
+          <li><strong>训练策略：</strong>提出"增量预训练（CPT）+ 两阶段混合指令微调（DMT）"方案，通过法律/通用数据配比消融实验验证 DMT 优于顺序训练；最终模型立法评测集达 <strong>92.66 分</strong>（基座 48.13，提升 92.5%）</li>
+          <li><strong>数据 Pipeline：</strong>构建千万级中英混合语料库，引入 MGA 方法利用 DeepSeek-V3 蒸馏多样化指令数据，设计 PDF/Word 到结构化语料的自动化清洗流水线</li>
+        </ul>
+        <div class="exp-tech"><span class="tech-chip">LLaMA-Factory</span><span class="tech-chip">DeepSpeed</span><span class="tech-chip">LoRA</span><span class="tech-chip">OpenCompass</span></div>
       </div>
 
       <div class="exp-item">
@@ -397,6 +468,24 @@
         <div class="pub-num">[1]</div>
         <div>
           <div class="pub-title">
+            <a href="https://arxiv.org/abs/2510.01553" target="_blank" rel="noopener noreferrer">
+              IoDResearch: Deep Research on Private Heterogeneous Data via the Internet of Data
+            </a>
+          </div>
+          <div class="pub-authors">Shi Z, <strong>Guo Z</strong>, Ma X, Huang G, Ma Y, Jing X.</div>
+          <div class="pub-venue"><em>ICASSP 2026</em>（IEEE International Conference on Acoustics, Speech and Signal Processing）&nbsp;·&nbsp; CCF-B</div>
+          <div class="pub-badges">
+            <span class="badge badge-c">会议论文</span>
+            <span class="badge badge-ccfb">CCF-B</span>
+            <span class="badge badge-fa">第二作者</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-num">[2]</div>
+        <div>
+          <div class="pub-title">
             <a href="https://doi.org/10.3390/s24154779" target="_blank" rel="noopener noreferrer">
               DDP-FedFV: A Dual-Decoupling Personalized Federated Learning Framework for Finger Vein Recognition
             </a>
@@ -411,7 +500,7 @@
       </div>
 
       <div class="pub">
-        <div class="pub-num">[2]</div>
+        <div class="pub-num">[3]</div>
         <div>
           <div class="pub-title">
             Finger Vein Recognition Method Based on Self-Calibrated Convolution
@@ -421,24 +510,6 @@
           <div class="pub-badges">
             <span class="badge badge-c">会议论文</span>
             <span class="badge badge-fa">第一作者</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub">
-        <div class="pub-num">[3]</div>
-        <div>
-          <div class="pub-title">
-            <a href="https://arxiv.org/abs/2510.01553" target="_blank" rel="noopener noreferrer">
-              IoDResearch: Deep Research on Private Heterogeneous Data via the Internet of Data
-            </a>
-          </div>
-          <div class="pub-authors">Shi Z, <strong>Guo Z</strong>, Ma X, Huang G, Ma Y, Jing X.</div>
-          <div class="pub-venue"><em>ICASSP 2026</em>（IEEE International Conference on Acoustics, Speech and Signal Processing）&nbsp;·&nbsp; CCF-B</div>
-          <div class="pub-badges">
-            <span class="badge badge-c">会议论文</span>
-            <span class="badge badge-ccfb">CCF-B</span>
-            <span class="badge badge-fa">第二作者</span>
           </div>
         </div>
       </div>
@@ -454,16 +525,21 @@
         <div class="award-medal">🥉</div>
         <div>
           <div class="award-featured-title">
-            <a href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">ACM MM EgoLink Challenge</a>
+            <a href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">ACM Multimedia 2026 EgoLink Challenge</a>
           </div>
-          <div class="award-featured-meta">第三名 · ACM Multimedia Challenge</div>
-          <a class="award-link" href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">Website ↗</a>
+          <div class="award-featured-meta">第三名 · ACM Multimedia 2026 Grand Challenge</div>
+          <a class="award-link" href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">赛事主页 ↗</a>
         </div>
-        <div class="award-year-pill">2025</div>
+        <div class="award-year-pill">2026</div>
       </div>
       <div class="award-row">
         <span class="award-bullet">▸</span>
         <span class="award-name">小米特等奖学金（全校仅 5 人）</span>
+        <span class="award-year">2024</span>
+      </div>
+      <div class="award-row">
+        <span class="award-bullet">▸</span>
+        <span class="award-name">中国大学生计算机设计大赛 国家级二等奖</span>
         <span class="award-year">2024</span>
       </div>
       <div class="award-row">
@@ -475,11 +551,6 @@
         <span class="award-bullet">▸</span>
         <span class="award-name">美国大学生数学建模竞赛 MCM Finalist（特等奖提名，全球前 2%）</span>
         <span class="award-year">2023</span>
-      </div>
-      <div class="award-row">
-        <span class="award-bullet">▸</span>
-        <span class="award-name">中国大学生计算机设计大赛 国家级二等奖</span>
-        <span class="award-year">2024</span>
       </div>
       <div class="award-row">
         <span class="award-bullet">▸</span>
@@ -495,10 +566,10 @@
     <div class="skills-rows">
       <div class="skill-row">
         <div class="skill-label">后训练</div>
-        <div class="skill-val"><span class="skill-chip">LoRA</span><span class="skill-chip">SFT</span><span class="skill-chip">DPO</span><span class="skill-chip">GRPO</span><span class="skill-chip">PPO</span><span class="skill-chip">LLaMA-Factory</span><span class="skill-chip">Verl</span><span class="skill-chip">DeepSpeed</span></div>
+        <div class="skill-val"><span class="skill-chip">LoRA</span><span class="skill-chip">SFT</span><span class="skill-chip">DPO</span><span class="skill-chip">GRPO</span><span class="skill-chip">PPO</span><span class="skill-chip">LLaMA-Factory</span><span class="skill-chip">veRL</span><span class="skill-chip">DeepSpeed</span></div>
       </div>
       <div class="skill-row">
-        <div class="skill-label">Agent&amp;RAG</div>
+        <div class="skill-label">Agent &amp; RAG</div>
         <div class="skill-val"><span class="skill-chip">Multi-Agent</span><span class="skill-chip">RAG Pipeline</span><span class="skill-chip">Hybrid Retrieval</span><span class="skill-chip">Knowledge Graph</span></div>
       </div>
       <div class="skill-row">
@@ -514,18 +585,28 @@
 
 </main>
 
-<footer>最后更新：2026 年 3 月 &nbsp;·&nbsp; 郭子杰</footer>
+<footer>最后更新：<time datetime="2026-07">2026 年 7 月</time> &nbsp;·&nbsp; 郭子杰</footer>
 
 <script>
   (function () {
     var root = document.documentElement;
     var themeBtn = document.getElementById('theme-toggle');
+    var themeMeta = document.getElementById('theme-color');
     var menuBtn = document.getElementById('menu-toggle');
     var navLinks = document.getElementById('nav-links');
+    var nav = document.querySelector('nav');
     var media = window.matchMedia('(prefers-color-scheme: dark)');
     var moonIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>';
     var sunIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>';
 
+    function savedTheme() {
+      try {
+        var saved = localStorage.getItem('theme');
+        return saved === 'dark' || saved === 'light' ? saved : null;
+      } catch (e) {
+        return null;
+      }
+    }
     function selectedTheme() {
       return root.getAttribute('data-theme') || (media.matches ? 'dark' : 'light');
     }
@@ -535,6 +616,7 @@
       themeBtn.innerHTML = dark ? sunIcon : moonIcon;
       themeBtn.setAttribute('aria-label', label);
       themeBtn.setAttribute('title', label);
+      themeMeta.setAttribute('content', dark ? '#111416' : '#fbfaf7');
     }
     syncThemeControl();
 
@@ -547,23 +629,45 @@
 
     if (media.addEventListener) {
       media.addEventListener('change', function () {
-        if (!root.getAttribute('data-theme')) syncThemeControl();
+        if (!savedTheme()) {
+          root.setAttribute('data-theme', media.matches ? 'dark' : 'light');
+          syncThemeControl();
+        }
       });
+    }
+
+    function setMenu(open) {
+      menuBtn.setAttribute('aria-expanded', String(open));
+      navLinks.classList.toggle('is-open', open);
+      menuBtn.textContent = open ? '收起' : '目录';
     }
 
     menuBtn.addEventListener('click', function () {
       var open = menuBtn.getAttribute('aria-expanded') === 'true';
-      menuBtn.setAttribute('aria-expanded', String(!open));
-      navLinks.classList.toggle('is-open', !open);
-      menuBtn.textContent = open ? '目录' : '收起';
+      setMenu(!open);
     });
 
     navLinks.addEventListener('click', function (event) {
       if (event.target.tagName === 'A' && window.innerWidth <= 680) {
-        navLinks.classList.remove('is-open');
-        menuBtn.setAttribute('aria-expanded', 'false');
-        menuBtn.textContent = '目录';
+        setMenu(false);
       }
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+        setMenu(false);
+        menuBtn.focus();
+      }
+    });
+
+    document.addEventListener('click', function (event) {
+      if (window.innerWidth <= 680 && menuBtn.getAttribute('aria-expanded') === 'true' && !nav.contains(event.target)) {
+        setMenu(false);
+      }
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 680) setMenu(false);
     });
   })();
 </script>
