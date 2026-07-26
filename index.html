@@ -83,7 +83,7 @@
     body {
       font-family: var(--font-sans);
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.62;
       color: var(--text);
       background: var(--bg);
       transition: color .2s ease, background .2s ease;
@@ -95,7 +95,7 @@
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
     }
-    .sec { scroll-margin-top: 76px; }
+    .sec { scroll-margin-top: 66px; }
     .skip-link {
       position: fixed; top: 10px; left: 12px; z-index: 100;
       padding: 8px 12px; color: var(--bg); background: var(--text); border-radius: 6px;
@@ -113,7 +113,7 @@
       border-bottom: 1px solid var(--line);
     }
     .nav-inner {
-      max-width: 727px; min-height: 54px; margin: 0 auto; padding: 0 24px;
+      max-width: 727px; min-height: 48px; margin: 0 auto; padding: 0 24px;
       display: flex; align-items: center; justify-content: space-between; gap: 20px;
     }
     .nav-brand { font-family: var(--font-serif); font-weight: 700; font-size: .96rem; color: var(--text); }
@@ -132,12 +132,12 @@
     #theme-toggle svg { width: 18px; height: 18px; }
 
     /* ── WRAPPER ── */
-    .page { max-width: 727px; margin: 0 auto; padding: 0 24px 72px; }
+    .page { max-width: 727px; margin: 0 auto; padding: 0 24px 48px; }
 
     /* ── HERO ── */
     .hero {
       display: grid; grid-template-columns: 112px 1fr; gap: 10px 38px; align-items: start;
-      padding: 58px 0 46px;
+      padding: 38px 0 30px;
       border-bottom: 1px solid var(--line);
     }
     .hero-photo {
@@ -148,9 +148,9 @@
     .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
     .hero-name { font-family: var(--font-serif); font-size: 2.35rem; font-weight: 700; line-height: 1.08; letter-spacing: -.02em; }
     .hero-en { display: block; margin-top: 6px; font-family: var(--font-serif); font-size: .76rem; color: var(--subtle); font-weight: 400; letter-spacing: .16em; text-transform: uppercase; }
-    .hero-identity { font-size: .92rem; color: var(--muted); margin: 14px 0 3px; }
-    .hero-tagline { font-size: .86rem; color: var(--muted); font-weight: 500; letter-spacing: .02em; margin-bottom: 12px; }
-    .hero-blurb { grid-column: 2; max-width: 590px; margin: 0 0 15px; font-size: .93rem; color: var(--muted); line-height: 1.8; }
+    .hero-identity { font-size: .92rem; color: var(--muted); margin: 10px 0 2px; }
+    .hero-tagline { font-size: .86rem; color: var(--muted); font-weight: 500; letter-spacing: .02em; margin-bottom: 6px; }
+    .hero-blurb { grid-column: 2; max-width: 590px; margin: 0 0 10px; font-size: .93rem; color: var(--muted); line-height: 1.68; }
     .hero-blurb strong { color: var(--text); font-weight: 650; }
     .hero-links { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 0; font-size: .84rem; }
     .hero-links a { color: var(--muted); }
@@ -158,8 +158,8 @@
     .hero-links a + a::before { content: "·"; color: var(--subtle); margin: 0 10px; }
 
     /* ── SECTION ── */
-    .sec { padding: 52px 0 0; }
-    .sec-hd { display: flex; align-items: center; gap: 14px; margin-bottom: 22px; }
+    .sec { padding: 34px 0 0; }
+    .sec-hd { display: flex; align-items: center; gap: 14px; margin-bottom: 15px; }
     .sec-hd h2 { font-family: var(--font-serif); font-size: 1.18rem; font-weight: 700; letter-spacing: .01em; }
     .sec-hd::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 
@@ -172,47 +172,47 @@
 
     /* ── EDUCATION ── */
     .edu-list { display: flex; flex-direction: column; }
-    .edu-item { display: grid; grid-template-columns: 138px 1fr; gap: 24px; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .edu-item { display: grid; grid-template-columns: 134px 1fr; gap: 22px; padding: 13px 0; border-bottom: 1px solid var(--line); }
     .edu-item:first-child { padding-top: 2px; }
     .edu-item:last-child { border-bottom: none; }
     .edu-dates { font-size: .8rem; color: var(--subtle); padding-top: 3px; font-variant-numeric: tabular-nums; }
     .edu-school { display: flex; align-items: center; gap: 9px; font-size: 1rem; font-weight: 650; color: var(--text); }
-    .edu-deg { font-size: .89rem; color: var(--muted); margin: 3px 0; }
-    .edu-meta { margin-top: 5px; font-size: .82rem; color: var(--muted); }
+    .edu-deg { font-size: .89rem; color: var(--muted); margin: 2px 0; }
+    .edu-meta { margin-top: 3px; font-size: .82rem; color: var(--muted); }
     .edu-meta span + span::before { content: " · "; color: var(--subtle); }
-    .edu-courses { font-size: .81rem; color: var(--subtle); margin-top: 7px; line-height: 1.75; }
+    .edu-courses { font-size: .81rem; color: var(--subtle); margin-top: 4px; line-height: 1.6; }
     .tag-sm { font-size: .72rem; font-weight: 400; color: var(--subtle); margin-left: 6px; }
 
     /* ── EXPERIENCE ── */
     .exp-list { display: flex; flex-direction: column; }
-    .exp-item { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .exp-item { padding: 16px 0; border-bottom: 1px solid var(--line); }
     .exp-item:first-child { padding-top: 2px; }
     .exp-item:last-child { border-bottom: none; }
     .exp-header { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 20px; margin-bottom: 4px; }
     .exp-org { display: flex; align-items: center; gap: 9px; font-size: 1rem; font-weight: 650; color: var(--text); }
     .exp-dates { font-size: .8rem; color: var(--subtle); white-space: nowrap; font-variant-numeric: tabular-nums; }
-    .exp-role { font-size: .85rem; color: var(--muted); margin-bottom: 9px; }
-    .exp-detail { max-width: 68ch; font-size: .91rem; color: var(--text); line-height: 1.78; margin: 0; padding-left: 1.15em; }
-    .exp-detail li { margin-bottom: 7px; }
+    .exp-role { font-size: .85rem; color: var(--muted); margin-bottom: 6px; }
+    .exp-detail { max-width: 68ch; font-size: .91rem; color: var(--text); line-height: 1.62; margin: 0; padding-left: 1.15em; }
+    .exp-detail li { margin-bottom: 4px; }
     .exp-detail li:last-child { margin-bottom: 0; }
-    .exp-tech { margin-top: 9px; font-size: .78rem; color: var(--subtle); }
+    .exp-tech { margin-top: 6px; font-size: .78rem; color: var(--subtle); }
     .exp-tech::before { content: "Tools — "; font-family: var(--font-serif); font-style: italic; color: var(--muted); }
     .tech-chip { display: inline; }
     .tech-chip + .tech-chip::before { content: ", "; }
 
     /* ── PUBLICATIONS ── */
     .pub-list { display: flex; flex-direction: column; }
-    .pub { display: grid; grid-template-columns: 38px 1fr; gap: 13px; align-items: start; padding: 19px 0; border-bottom: 1px solid var(--line); }
+    .pub { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 13px 0; border-bottom: 1px solid var(--line); }
     .pub:first-child { padding-top: 2px; }
     .pub:last-child { border-bottom: none; }
     .pub-num { font-size: .8rem; color: var(--subtle); padding-top: 3px; font-variant-numeric: tabular-nums; }
-    .pub-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.55; margin-bottom: 5px; }
+    .pub-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 3px; }
     .pub-title a { color: var(--text); }
     .pub-title a:hover { color: var(--accent); }
     .pub-authors { font-size: .86rem; color: var(--muted); margin-bottom: 2px; }
     .pub-authors strong { color: var(--text); }
     .pub-venue { font-size: .83rem; color: var(--muted); }
-    .pub-badges { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 7px; font-size: .76rem; color: var(--subtle); }
+    .pub-badges { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 4px; font-size: .76rem; color: var(--subtle); }
     .badge { display: inline; }
     .badge + .badge::before { content: "·"; margin-right: 7px; color: var(--subtle); }
     .badge-j, .badge-c, .badge-fa, .badge-ccfb { color: inherit; }
@@ -220,22 +220,22 @@
     /* ── AWARDS ── */
     .award-list { display: flex; flex-direction: column; }
     .award-featured {
-      padding: 16px 18px; margin-bottom: 10px;
+      padding: 12px 15px; margin-bottom: 7px;
       border-radius: 12px; background: var(--panel);
     }
     .award-featured-title { font-size: .98rem; font-weight: 650; color: var(--text); line-height: 1.5; }
     .award-featured-title a { color: inherit; }
     .award-featured-title a:hover { color: var(--accent); text-decoration: none; }
     .award-featured-meta { font-size: .84rem; color: var(--muted); margin-top: 3px; }
-    .award-link { display: inline-block; margin-top: 6px; font-size: .8rem; }
-    .award-row { display: grid; grid-template-columns: 138px 1fr; gap: 24px; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+    .award-link { display: inline-block; margin-top: 4px; font-size: .8rem; }
+    .award-row { display: grid; grid-template-columns: 134px 1fr; gap: 22px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
     .award-row:last-child { border-bottom: none; }
     .award-name { grid-column: 2; color: var(--text); }
     .award-year { grid-column: 1; grid-row: 1; font-size: .8rem; color: var(--subtle); font-variant-numeric: tabular-nums; }
 
     /* ── SKILLS ── */
     .skills-rows { display: flex; flex-direction: column; }
-    .skill-row { display: grid; grid-template-columns: 138px 1fr; gap: 24px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .skill-row { display: grid; grid-template-columns: 134px 1fr; gap: 22px; padding: 8px 0; border-bottom: 1px solid var(--line); }
     .skill-row:first-child { padding-top: 2px; }
     .skill-row:last-child { border-bottom: none; }
     .skill-label { font-weight: 650; color: var(--text); font-size: .86rem; }
@@ -273,7 +273,7 @@
     }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--line); margin-top: 58px; padding: 22px 0; text-align: center; font-size: .78rem; color: var(--subtle); }
+    footer { border-top: 1px solid var(--line); margin-top: 36px; padding: 16px 0; text-align: center; font-size: .78rem; color: var(--subtle); }
 
     @media (max-width: 680px) {
       .nav-inner { min-height: 56px; padding: 0 20px; flex-wrap: wrap; gap: 0; }
@@ -284,7 +284,7 @@
       .nav-links.is-open { max-height: 320px; opacity: 1; visibility: visible; pointer-events: auto; padding-top: 8px; padding-bottom: 12px; border-top-color: var(--line); transition-delay: 0s; }
       .nav-links a { display: block; min-height: 44px; padding: 10px 2px; font-size: .9rem; }
       .page { padding-left: 20px; padding-right: 20px; }
-      .hero { grid-template-columns: 82px 1fr; gap: 8px 18px; padding: 34px 0 36px; }
+      .hero { grid-template-columns: 82px 1fr; gap: 6px 18px; padding: 24px 0 22px; }
       .hero-photo { width: 82px; height: 82px; }
       .hero-main { min-width: 0; }
       .hero-name { font-size: 1.92rem; }
@@ -292,14 +292,14 @@
       .hero-tagline { font-size: .8rem; margin-bottom: 0; }
       .hero-blurb, .hero-links { grid-column: 1 / -1; }
       .hero-blurb { margin-top: 4px; margin-bottom: 8px; font-size: .9rem; }
-      .sec { padding-top: 44px; scroll-margin-top: 66px; }
+      .sec { padding-top: 30px; scroll-margin-top: 58px; }
       .edu-item, .award-row, .skill-row { grid-template-columns: 1fr; gap: 4px; }
       .edu-dates { margin-bottom: 2px; }
       .exp-header { grid-template-columns: 1fr; gap: 2px; }
       .exp-dates { grid-row: 1; }
       .exp-org { grid-row: 2; }
       .pub { grid-template-columns: 28px 1fr; gap: 8px; }
-      .award-featured { padding: 14px 16px; }
+      .award-featured { padding: 11px 14px; }
       .award-name, .award-year { grid-column: 1; }
       .award-year { grid-row: auto; }
       .skill-label { margin-bottom: 2px; }
@@ -489,7 +489,7 @@
             </a>
           </div>
           <div class="pub-authors">Shi Z, <strong>Guo Z</strong>, Ma X, Huang G, Ma Y, Jing X.</div>
-          <div class="pub-venue"><em>ICASSP 2026</em>（IEEE International Conference on Acoustics, Speech and Signal Processing）&nbsp;·&nbsp; CCF-B</div>
+          <div class="pub-venue"><em>ICASSP 2026</em>（IEEE International Conference on Acoustics, Speech and Signal Processing）</div>
           <div class="pub-badges">
             <span class="badge badge-c">会议论文</span>
             <span class="badge badge-ccfb">CCF-B</span>
