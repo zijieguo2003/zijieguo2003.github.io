@@ -8,7 +8,7 @@
   <meta name="author" content="郭子杰（Zijie Guo）" />
   <meta name="theme-color" id="theme-color" content="#ffffff" />
   <link rel="canonical" href="https://zijieguo2003.github.io/" />
-  <link rel="icon" type="image/png" href="avatar.png" />
+  <link rel="icon" id="site-favicon" type="image/svg+xml" href="favicon.svg" />
   <meta property="og:type" content="profile" />
   <meta property="og:locale" content="zh_CN" />
   <meta property="og:title" content="郭子杰（Zijie Guo）｜Agentic Search · Visual RAG" />
@@ -24,6 +24,7 @@
   <script>
     (function () {
       var themes = { light: '#ffffff', dark: '#121212', paper: '#f5f0e6', slate: '#edf3f6' };
+      var favicons = { light: 'favicon.svg', dark: 'favicon-dark.svg', paper: 'favicon-paper.svg', slate: 'favicon-slate.svg' };
       var theme = 'light';
       try {
         var saved = localStorage.getItem('theme');
@@ -31,6 +32,7 @@
       } catch (e) {}
       document.documentElement.setAttribute('data-theme', theme);
       document.getElementById('theme-color').setAttribute('content', themes[theme]);
+      document.getElementById('site-favicon').setAttribute('href', favicons[theme]);
     })();
   </script>
   <script type="application/ld+json">
@@ -749,8 +751,10 @@
     var themeBtn = document.getElementById('theme-toggle');
     var themeMenu = document.getElementById('theme-menu');
     var themeMeta = document.getElementById('theme-color');
+    var siteFavicon = document.getElementById('site-favicon');
     var themeOptions = [].slice.call(document.querySelectorAll('[data-theme-choice]'));
     var themeColors = { light: '#ffffff', dark: '#121212', paper: '#f5f0e6', slate: '#edf3f6' };
+    var themeFavicons = { light: 'favicon.svg', dark: 'favicon-dark.svg', paper: 'favicon-paper.svg', slate: 'favicon-slate.svg' };
     var themeNames = { light: '白纸', dark: '墨黑', paper: '暖纸', slate: '雾蓝' };
 
     function selectedTheme() {
@@ -762,6 +766,7 @@
       if (!Object.prototype.hasOwnProperty.call(themeColors, theme)) theme = 'light';
       root.setAttribute('data-theme', theme);
       themeMeta.setAttribute('content', themeColors[theme]);
+      siteFavicon.setAttribute('href', themeFavicons[theme]);
       themeBtn.setAttribute('title', '当前主题：' + themeNames[theme]);
       themeOptions.forEach(function (option) {
         option.setAttribute('aria-pressed', String(option.getAttribute('data-theme-choice') === theme));
