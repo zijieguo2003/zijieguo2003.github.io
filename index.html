@@ -14,22 +14,23 @@
   <meta property="og:title" content="郭子杰（Zijie Guo）｜Agentic Search · Visual RAG" />
   <meta property="og:description" content="北京大学电子信息硕士研究生，研究方向包括强化学习驱动的检索与搜索智能体、Visual RAG 和多模态大模型。" />
   <meta property="og:url" content="https://zijieguo2003.github.io/" />
-  <meta property="og:image" content="https://zijieguo2003.github.io/avatar.png" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://zijieguo2003.github.io/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&amp;display=swap" />
   <script>
     (function () {
+      var themes = { light: '#ffffff', dark: '#121212', paper: '#f5f0e6', slate: '#edf3f6' };
+      var theme = 'light';
       try {
         var saved = localStorage.getItem('theme');
-        var preferred = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        var theme = saved === 'dark' || saved === 'light' ? saved : preferred;
-        document.documentElement.setAttribute('data-theme', theme);
-        document.getElementById('theme-color').setAttribute('content', theme === 'dark' ? '#121212' : '#ffffff');
-      } catch (e) {
-        document.documentElement.setAttribute('data-theme', 'light');
-      }
+        if (Object.prototype.hasOwnProperty.call(themes, saved)) theme = saved;
+      } catch (e) {}
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('theme-color').setAttribute('content', themes[theme]);
     })();
   </script>
   <script type="application/ld+json">
@@ -78,6 +79,12 @@
       --accent: #1783ff;
       --accent-soft: rgba(23,131,255,.08);
       --panel: #f7f7f7;
+      --award-gradient: linear-gradient(135deg, rgba(23,131,255,.10) 0%, rgba(113,86,226,.06) 52%, rgba(255,255,255,.88) 100%);
+      --award-border: rgba(23,131,255,.18);
+      --award-shadow: 0 14px 34px rgba(34,76,132,.08);
+      --award-shadow-hover: 0 18px 42px rgba(34,76,132,.12);
+      --award-glow: rgba(23,131,255,.13);
+      --award-line: linear-gradient(90deg, #1783ff, #7667df 58%, transparent 92%);
     }
 
     body {
@@ -95,7 +102,7 @@
     a:focus-visible, button:focus-visible {
       outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px;
     }
-    .sec { scroll-margin-top: 66px; }
+    .sec { scroll-margin-top: 24px; }
     .skip-link {
       position: fixed; top: 10px; left: 12px; z-index: 100;
       padding: 8px 12px; color: var(--bg); background: var(--text); border-radius: 6px;
@@ -104,58 +111,96 @@
     .skip-link:focus { transform: translateY(0); }
     main:focus { outline: none; }
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 50;
-      background: var(--nav-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line);
+    /* ── SHELL: sticky profile rail + content column ──
+       The shell runs wide (1180px) but the reading measure stays ~800px;
+       the extra width goes to the rail, not to longer lines of text. */
+    .shell {
+      max-width: 1180px; margin: 0 auto; padding: 0 28px 56px;
+      display: grid; grid-template-columns: 248px 1fr; gap: 52px;
+      align-items: start;
     }
-    .nav-inner {
-      max-width: 727px; min-height: 48px; margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between; gap: 20px;
-    }
-    .nav-brand { font-family: var(--font-serif); font-weight: 700; font-size: .96rem; color: var(--text); }
-    .nav-brand:hover { color: var(--accent); text-decoration: none; }
-    .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; }
-    .nav-links a { font-size: .82rem; color: var(--muted); white-space: nowrap; }
-    .nav-links a:hover { color: var(--accent); text-decoration: none; }
-    .nav-actions { display: flex; align-items: center; gap: 4px; }
-    .nav-control {
-      min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
-      background: none; border: 0; color: var(--muted); cursor: pointer;
-      border-radius: 6px; font: inherit;
-    }
-    .nav-control:hover { color: var(--text); background: var(--accent-soft); }
-    #menu-toggle { display: none; width: auto; padding: 0 8px; font-size: .82rem; }
-    #theme-toggle svg { width: 18px; height: 18px; }
 
-    /* ── WRAPPER ── */
-    .page { max-width: 727px; margin: 0 auto; padding: 0 24px 48px; }
-
-    /* ── HERO ── */
-    .hero {
-      display: grid; grid-template-columns: 112px 1fr; gap: 10px 38px; align-items: start;
-      padding: 38px 0 30px;
-      border-bottom: 1px solid var(--line);
-    }
-    .hero-photo {
-      width: 112px; height: 112px; border-radius: 10px; flex-shrink: 0;
+    /* ── RAIL ── */
+    .rail { position: sticky; top: 30px; padding-top: 46px; }
+    .rail-photo {
+      width: 128px; height: 128px; border-radius: 12px; overflow: hidden;
       background: var(--panel); border: 1px solid var(--line);
-      display: flex; align-items: center; justify-content: center; overflow: hidden;
     }
-    .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
-    .hero-name { font-family: var(--font-serif); font-size: 2.35rem; font-weight: 700; line-height: 1.08; letter-spacing: -.02em; }
-    .hero-en { display: block; margin-top: 6px; font-family: var(--font-serif); font-size: .76rem; color: var(--subtle); font-weight: 400; letter-spacing: .16em; text-transform: uppercase; }
-    .hero-identity { font-size: .92rem; color: var(--muted); margin: 10px 0 2px; }
-    .hero-tagline { font-size: .86rem; color: var(--muted); font-weight: 500; letter-spacing: .02em; margin-bottom: 6px; }
-    .hero-blurb { grid-column: 2; max-width: 590px; margin: 0 0 10px; font-size: .93rem; color: var(--muted); line-height: 1.68; }
-    .hero-blurb strong { color: var(--text); font-weight: 650; }
-    .hero-links { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 0; font-size: .84rem; }
-    .hero-links a { color: var(--muted); }
-    .hero-links a:hover { color: var(--accent); }
-    .hero-links a + a::before { content: "·"; color: var(--subtle); margin: 0 10px; }
+    .rail-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .rail-name { margin-top: 17px; font-family: var(--font-serif); font-size: 1.74rem; font-weight: 700; line-height: 1.12; letter-spacing: -.01em; }
+    .rail-en { display: block; margin-top: 5px; font-family: var(--font-serif); font-size: .71rem; color: var(--subtle); font-weight: 400; letter-spacing: .16em; text-transform: uppercase; }
+    .rail-affil { margin-top: 11px; font-size: .85rem; color: var(--muted); line-height: 1.55; }
+    .rail-tagline { margin-top: 4px; font-size: .77rem; color: var(--subtle); line-height: 1.55; }
+
+    .rail-nav { margin-top: 19px; padding-top: 15px; border-top: 1px solid var(--line); }
+    .rail-nav ul { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+    .rail-nav a {
+      display: block; padding: 5px 10px; margin-left: -10px; border-radius: 6px;
+      font-size: .83rem; color: var(--muted);
+    }
+    .rail-nav a:hover { color: var(--text); background: var(--panel); text-decoration: none; }
+    .rail-nav a.is-active { color: var(--text); font-weight: 600; background: var(--panel); }
+
+    .rail-links {
+      margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line);
+      display: flex; flex-wrap: wrap; gap: 5px 15px; font-size: .82rem;
+    }
+    .rail-links a { color: var(--muted); }
+    .rail-links a:hover { color: var(--accent); }
+
+    .theme-picker { position: absolute; top: 46px; right: 0; width: max-content; margin: 0; }
+    .theme-btn {
+      min-height: 34px; padding: 5px 9px 5px 7px;
+      display: inline-flex; align-items: center; gap: 7px;
+      background: none; border: 1px solid transparent; color: var(--subtle); cursor: pointer;
+      border-radius: 7px; font: inherit; font-size: .78rem;
+    }
+    .theme-btn:hover, .theme-btn[aria-expanded="true"] { color: var(--text); background: var(--panel); border-color: var(--line); }
+    .theme-glyph { width: 16px; height: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; padding: 2px; border: 1px solid var(--line); border-radius: 50%; overflow: hidden; }
+    .theme-glyph i:nth-child(1) { background: #fff; }
+    .theme-glyph i:nth-child(2) { background: #151515; }
+    .theme-glyph i:nth-child(3) { background: #e9dfcb; }
+    .theme-glyph i:nth-child(4) { background: #b8ced8; }
+    .theme-menu {
+      position: absolute; z-index: 80; top: calc(100% + 7px); right: 0; width: 164px;
+      padding: 6px; border: 1px solid var(--line); border-radius: 10px;
+      background: var(--bg); box-shadow: 0 12px 30px rgba(0,0,0,.12);
+    }
+    .theme-menu[hidden] { display: none; }
+    .theme-option {
+      width: 100%; min-height: 38px; padding: 6px 8px; display: flex; align-items: center; gap: 9px;
+      border: 0; border-radius: 6px; background: transparent; color: var(--muted);
+      cursor: pointer; font: inherit; font-size: .8rem; text-align: left;
+    }
+    .theme-option:hover { background: var(--panel); color: var(--text); }
+    .theme-option[aria-pressed="true"] { background: var(--panel); color: var(--text); font-weight: 600; }
+    .theme-option[aria-pressed="true"]::after { content: "✓"; margin-left: auto; color: var(--accent); }
+    .theme-swatch { width: 17px; height: 17px; flex: 0 0 auto; border: 1px solid rgba(0,0,0,.14); border-radius: 50%; }
+    .swatch-light { background: #fff; }
+    .swatch-dark { background: #151515; border-color: rgba(255,255,255,.22); }
+    .swatch-paper { background: #e9dfcb; }
+    .swatch-slate { background: #b8ced8; }
+
+    /* ── CONTENT ── */
+    .content { min-width: 0; padding-top: 46px; }
+    .intro { padding-bottom: 6px; }
+    .intro-kicker { display: block; margin-bottom: 8px; font-size: .72rem; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; color: var(--accent); }
+    .intro-title { max-width: 18ch; font-family: var(--font-serif); font-size: clamp(1.58rem, 3vw, 2.12rem); font-weight: 600; line-height: 1.26; letter-spacing: -.015em; }
+    .intro-copy { max-width: 70ch; margin-top: 13px; font-size: .95rem; color: var(--muted); line-height: 1.76; }
+    .intro-copy strong { color: var(--text); font-weight: 650; }
+
+    /* ── RESEARCH OVERVIEW ── */
+    .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .research-card { min-height: 146px; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: linear-gradient(145deg, var(--panel), transparent 70%); }
+    .research-index { font-family: var(--font-serif); font-size: .73rem; color: var(--accent); }
+    .research-card h3 { margin-top: 20px; font-family: var(--font-serif); font-size: .98rem; line-height: 1.35; }
+    .research-card p { margin-top: 7px; font-size: .79rem; line-height: 1.58; color: var(--muted); }
+    .news-list { display: flex; flex-direction: column; }
+    .news-item { display: grid; grid-template-columns: 72px 1fr; gap: 15px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+    .news-item:last-child { border-bottom: 0; }
+    .news-date { padding-top: 2px; font-size: .76rem; color: var(--subtle); font-variant-numeric: tabular-nums; }
+    .news-copy { font-size: .88rem; color: var(--muted); }
+    .news-copy strong { color: var(--text); font-weight: 600; }
 
     /* ── SECTION ── */
     .sec { padding: 34px 0 0; }
@@ -202,10 +247,11 @@
 
     /* ── PUBLICATIONS ── */
     .pub-list { display: flex; flex-direction: column; }
-    .pub { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .pub { display: grid; grid-template-columns: 72px 1fr; gap: 16px; align-items: start; padding: 15px 0; border-bottom: 1px solid var(--line); }
     .pub:first-child { padding-top: 2px; }
     .pub:last-child { border-bottom: none; }
-    .pub-num { font-size: .8rem; color: var(--subtle); padding-top: 3px; font-variant-numeric: tabular-nums; }
+    .pub-tag { margin-top: 3px; padding: 6px 5px 5px; border: 1px solid var(--line); border-radius: 6px; font-family: var(--font-serif); font-size: .68rem; font-weight: 600; line-height: 1.1; text-align: center; color: var(--text); letter-spacing: -.01em; }
+    .pub-tag span { display: block; margin-top: 4px; font-family: var(--font-sans); font-size: .62rem; font-weight: 500; color: var(--subtle); letter-spacing: .06em; }
     .pub-title { font-family: var(--font-serif); font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.5; margin-bottom: 3px; }
     .pub-title a { color: var(--text); }
     .pub-title a:hover { color: var(--accent); }
@@ -216,18 +262,39 @@
     .badge { display: inline; }
     .badge + .badge::before { content: "·"; margin-right: 7px; color: var(--subtle); }
     .badge-j, .badge-c, .badge-fa, .badge-ccfb { color: inherit; }
+    .pub-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 7px; font-size: .77rem; }
+    .pub-links a::after { content: " ↗"; font-size: .7em; }
 
     /* ── AWARDS ── */
     .award-list { display: flex; flex-direction: column; }
     .award-featured {
-      padding: 12px 15px; margin-bottom: 7px;
-      border-radius: 12px; background: var(--panel);
+      position: relative; isolation: isolate; overflow: hidden;
+      padding: 18px 20px; margin-bottom: 9px;
+      border: 1px solid var(--award-border); border-radius: 14px;
+      background: var(--award-gradient); box-shadow: var(--award-shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .award-featured-title { font-size: .98rem; font-weight: 650; color: var(--text); line-height: 1.5; }
+    .award-featured::before {
+      content: ""; position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--award-line);
+    }
+    .award-featured::after {
+      content: ""; position: absolute; z-index: -1; width: 230px; height: 230px;
+      top: -155px; right: -80px; border-radius: 50%; background: var(--award-glow);
+      filter: blur(2px); pointer-events: none;
+    }
+    .award-featured:hover { transform: translateY(-1px); box-shadow: var(--award-shadow-hover); }
+    .award-featured-title { font-size: 1.01rem; font-weight: 650; color: var(--text); line-height: 1.5; letter-spacing: -.005em; }
     .award-featured-title a { color: inherit; }
     .award-featured-title a:hover { color: var(--accent); text-decoration: none; }
-    .award-featured-meta { font-size: .84rem; color: var(--muted); margin-top: 3px; }
-    .award-link { display: inline-block; margin-top: 4px; font-size: .8rem; }
+    .award-featured-meta { font-size: .84rem; color: var(--muted); margin-top: 4px; }
+    .award-link {
+      display: inline-flex; align-items: center; margin-top: 9px; padding: 3px 9px;
+      border: 1px solid var(--award-border); border-radius: 999px;
+      background: var(--accent-soft);
+      font-size: .76rem;
+    }
+    .award-link:hover { background: var(--accent-soft); text-decoration: none; }
     .award-row { display: grid; grid-template-columns: 134px 1fr; gap: 22px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
     .award-row:last-child { border-bottom: none; }
     .award-name { grid-column: 2; color: var(--text); }
@@ -243,66 +310,86 @@
     .skill-chip { display: inline; }
     .skill-chip + .skill-chip::before { content: " · "; color: var(--subtle); }
 
-    /* ── DARK MODE ── */
+    /* ── THEMES ── */
     :root[data-theme="dark"] {
       color-scheme: dark;
-      --bg: #121212;
-      --nav-bg: rgba(18,18,18,.92);
-      --text: rgba(255,255,255,.9);
-      --muted: rgba(255,255,255,.62);
-      --subtle: rgba(255,255,255,.45);
-      --line: rgba(255,255,255,.12);
-      --accent: #4b9dff;
-      --accent-soft: rgba(75,157,255,.12);
-      --panel: #1c1c1e;
+      --bg: #121212; --nav-bg: rgba(18,18,18,.92);
+      --text: rgba(255,255,255,.9); --muted: rgba(255,255,255,.62); --subtle: rgba(255,255,255,.45);
+      --line: rgba(255,255,255,.12); --accent: #4b9dff; --accent-soft: rgba(75,157,255,.12); --panel: #1c1c1e;
+      --award-gradient: linear-gradient(135deg, rgba(75,157,255,.18) 0%, rgba(117,83,220,.13) 50%, rgba(28,28,30,.88) 100%);
+      --award-border: rgba(105,170,255,.24); --award-shadow: 0 16px 38px rgba(0,0,0,.25);
+      --award-shadow-hover: 0 20px 46px rgba(0,0,0,.32); --award-glow: rgba(91,151,255,.19);
+      --award-line: linear-gradient(90deg, #5aa5ff, #9a7cff 58%, transparent 92%);
     }
-
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme="light"]) {
-        color-scheme: dark;
-        --bg: #121212;
-        --nav-bg: rgba(18,18,18,.92);
-        --text: rgba(255,255,255,.9);
-        --muted: rgba(255,255,255,.62);
-        --subtle: rgba(255,255,255,.45);
-        --line: rgba(255,255,255,.12);
-        --accent: #4b9dff;
-        --accent-soft: rgba(75,157,255,.12);
-        --panel: #1c1c1e;
-      }
+    :root[data-theme="paper"] {
+      color-scheme: light;
+      --bg: #f5f0e6; --nav-bg: rgba(245,240,230,.92);
+      --text: #302b24; --muted: rgba(48,43,36,.68); --subtle: rgba(48,43,36,.48);
+      --line: rgba(80,65,45,.14); --accent: #a24b2a; --accent-soft: rgba(162,75,42,.1); --panel: #ebe4d7;
+      --award-gradient: linear-gradient(135deg, rgba(183,103,45,.13) 0%, rgba(205,157,74,.10) 52%, rgba(245,240,230,.90) 100%);
+      --award-border: rgba(162,75,42,.22); --award-shadow: 0 14px 34px rgba(92,65,32,.10);
+      --award-shadow-hover: 0 18px 42px rgba(92,65,32,.15); --award-glow: rgba(205,157,74,.18);
+      --award-line: linear-gradient(90deg, #a24b2a, #d09a47 60%, transparent 92%);
+    }
+    :root[data-theme="slate"] {
+      color-scheme: light;
+      --bg: #edf3f6; --nav-bg: rgba(237,243,246,.92);
+      --text: #17262e; --muted: rgba(23,38,46,.67); --subtle: rgba(23,38,46,.47);
+      --line: rgba(35,75,94,.14); --accent: #236b8e; --accent-soft: rgba(35,107,142,.1); --panel: #e1eaee;
+      --award-gradient: linear-gradient(135deg, rgba(35,107,142,.13) 0%, rgba(86,132,165,.09) 48%, rgba(237,243,246,.90) 100%);
+      --award-border: rgba(35,107,142,.22); --award-shadow: 0 14px 34px rgba(35,75,94,.10);
+      --award-shadow-hover: 0 18px 42px rgba(35,75,94,.15); --award-glow: rgba(71,143,165,.17);
+      --award-line: linear-gradient(90deg, #236b8e, #5c87aa 60%, transparent 92%);
     }
 
     /* ── FOOTER ── */
-    footer { border-top: 1px solid var(--line); margin-top: 36px; padding: 16px 0; text-align: center; font-size: .78rem; color: var(--subtle); }
+    footer { grid-column: 2; border-top: 1px solid var(--line); margin-top: 36px; padding: 14px 0 0; font-size: .78rem; color: var(--subtle); }
 
-    @media (max-width: 680px) {
-      .nav-inner { min-height: 56px; padding: 0 20px; flex-wrap: wrap; gap: 0; }
-      .nav-brand { min-height: 56px; display: inline-flex; align-items: center; }
-      .nav-actions { margin-left: auto; }
-      #menu-toggle { display: inline-flex; }
-      .nav-links { order: 3; flex-basis: calc(100% + 40px); margin: 0 -20px; padding: 0 20px; max-height: 0; overflow: hidden; opacity: 0; visibility: hidden; pointer-events: none; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid transparent; transition: max-height .24s ease, opacity .18s ease, padding .24s ease, border-color .24s ease, visibility 0s linear .24s; }
-      .nav-links.is-open { max-height: 320px; opacity: 1; visibility: visible; pointer-events: auto; padding-top: 8px; padding-bottom: 12px; border-top-color: var(--line); transition-delay: 0s; }
-      .nav-links a { display: block; min-height: 44px; padding: 10px 2px; font-size: .9rem; }
-      .page { padding-left: 20px; padding-right: 20px; }
-      .hero { grid-template-columns: 82px 1fr; gap: 6px 18px; padding: 24px 0 22px; }
-      .hero-photo { width: 82px; height: 82px; }
-      .hero-main { min-width: 0; }
-      .hero-name { font-size: 1.92rem; }
-      .hero-identity { margin-top: 10px; font-size: .85rem; }
-      .hero-tagline { font-size: .8rem; margin-bottom: 0; }
-      .hero-blurb, .hero-links { grid-column: 1 / -1; }
-      .hero-blurb { margin-top: 4px; margin-bottom: 8px; font-size: .9rem; }
-      .sec { padding-top: 30px; scroll-margin-top: 58px; }
+    /* Below the two-column breakpoint the rail unpins and becomes a header:
+       photo beside the name, section nav as a scrollable strip underneath. */
+    @media (max-width: 900px) {
+      .shell { grid-template-columns: 1fr; gap: 0; padding: 0 22px 44px; }
+      .rail {
+        position: relative; top: auto; padding-top: 28px;
+        display: grid; grid-template-columns: 84px 1fr; gap: 0 18px; align-items: start;
+      }
+      .rail-photo { width: 84px; height: 84px; grid-column: 1; grid-row: 1; }
+      .rail-id { grid-column: 2; grid-row: 1; min-width: 0; }
+      .rail-name { margin-top: 0; font-size: 1.6rem; }
+      .rail-affil { margin-top: 9px; }
+      .rail-nav { grid-column: 1 / -1; margin-top: 17px; padding-top: 14px; }
+      .rail-nav ul { flex-direction: row; gap: 3px; overflow-x: auto; scrollbar-width: none; }
+      .rail-nav ul::-webkit-scrollbar { display: none; }
+      .rail-nav a { margin-left: 0; padding: 6px 10px; white-space: nowrap; }
+      .rail-links { grid-column: 1 / -1; }
+      .theme-picker { position: absolute; top: 24px; right: 0; margin-top: 0; }
+      .theme-menu { right: 0; left: auto; }
+      .content { padding-top: 4px; }
+      footer { grid-column: 1; }
+      .sec { padding-top: 30px; }
+      .research-grid { grid-template-columns: 1fr; }
+      .research-card { min-height: 0; }
+      .research-card h3 { margin-top: 8px; }
       .edu-item, .award-row, .skill-row { grid-template-columns: 1fr; gap: 4px; }
       .edu-dates { margin-bottom: 2px; }
       .exp-header { grid-template-columns: 1fr; gap: 2px; }
       .exp-dates { grid-row: 1; }
       .exp-org { grid-row: 2; }
-      .pub { grid-template-columns: 28px 1fr; gap: 8px; }
+      .pub { grid-template-columns: 62px 1fr; gap: 10px; }
       .award-featured { padding: 11px 14px; }
       .award-name, .award-year { grid-column: 1; }
       .award-year { grid-row: auto; }
       .skill-label { margin-bottom: 2px; }
+    }
+
+    @media (max-width: 520px) {
+      .rail { grid-template-columns: 72px 1fr; gap: 0 14px; }
+      .rail-photo { width: 72px; height: 72px; }
+      .rail-name { padding-right: 30px; font-size: 1.42rem; }
+      .rail-affil { font-size: .8rem; }
+      .news-item { grid-template-columns: 62px 1fr; gap: 10px; }
+      .pub { grid-template-columns: 1fr; gap: 6px; }
+      .pub-tag { width: max-content; min-width: 62px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -311,17 +398,27 @@
     }
 
     @media print {
-      :root, :root[data-theme="dark"] {
+      :root, :root[data-theme="dark"], :root[data-theme="paper"], :root[data-theme="slate"] {
         --bg: #fff; --text: #111; --muted: #333; --subtle: #555;
         --line: #ccc; --accent: #111; --panel: #fff;
       }
-      nav, .skip-link, .nav-actions { display: none !important; }
+      .skip-link, .rail-nav, .theme-picker { display: none !important; }
       body { font-size: 10.5pt; background: #fff; }
-      .page { max-width: none; padding: 0; }
-      .hero { padding: 0 0 18px; }
-      .sec { padding-top: 26px; }
-      .edu-item, .exp-item, .pub, .award-featured, .award-row, .skill-row { break-inside: avoid; }
-      .award-featured { background: #fff; padding: 0; border-radius: 0; }
+      .shell { max-width: none; padding: 0; display: block; }
+      .rail {
+        position: static; padding-top: 0; padding-bottom: 12px;
+        display: grid; grid-template-columns: 78px 1fr; gap: 0 16px;
+        border-bottom: 1px solid #ccc;
+      }
+      .rail-photo { width: 78px; height: 78px; grid-column: 1; grid-row: 1; }
+      .rail-id { grid-column: 2; grid-row: 1; }
+      .rail-name { margin-top: 0; font-size: 20pt; }
+      .rail-links { grid-column: 1 / -1; border-top: 0; padding-top: 6px; margin-top: 8px; }
+      .content { padding-top: 0; }
+      .sec { padding-top: 22px; }
+      .research-card, .news-item, .edu-item, .exp-item, .pub, .award-featured, .award-row, .skill-row { break-inside: avoid; }
+      .award-featured { background: #fff; padding: 0; border: 0; border-radius: 0; box-shadow: none; transform: none; }
+      .award-featured::before, .award-featured::after { display: none; }
       a { color: inherit; text-decoration: none; }
       footer { margin-top: 32px; }
     }
@@ -331,45 +428,85 @@
 
 <a class="skip-link" href="#main-content">跳至主要内容</a>
 
-<nav aria-label="页面导航">
-  <div class="nav-inner">
-    <a class="nav-brand" href="#top">郭子杰</a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#education">教育经历</a></li>
-      <li><a href="#experience">研究与实习</a></li>
-      <li><a href="#publications">学术论文</a></li>
-      <li><a href="#awards">荣誉奖项</a></li>
-      <li><a href="#skills">技能</a></li>
-    </ul>
-    <div class="nav-actions">
-      <button class="nav-control" id="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links">目录</button>
-      <button class="nav-control" id="theme-toggle" type="button" title="切换至深色模式" aria-label="切换至深色模式">
-        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
-      </button>
-    </div>
-  </div>
-</nav>
+<div class="shell">
 
-<main class="page" id="main-content" tabindex="-1">
-
-  <!-- HERO -->
-  <header class="hero">
-    <div class="hero-photo">
-      <img src="avatar.png" alt="郭子杰的头像" width="112" height="112" decoding="async" fetchpriority="high" />
+  <header class="rail">
+    <div class="rail-photo">
+      <img src="avatar.png" alt="郭子杰的头像" width="128" height="128" decoding="async" fetchpriority="high" />
     </div>
-    <div class="hero-main">
-      <h1 class="hero-name">郭子杰 <span class="hero-en">Zijie Guo</span></h1>
-      <div class="hero-identity">北京大学 · 电子信息硕士研究生</div>
-      <div class="hero-tagline">Agentic Search · Visual RAG · Multimodal LLMs</div>
+    <div class="rail-id">
+      <h1 class="rail-name">郭子杰 <span class="rail-en">Zijie Guo</span></h1>
+      <div class="rail-affil">北京大学 · 软件与微电子学院<br />电子信息硕士研究生</div>
+      <div class="rail-tagline">Agentic Search · Visual RAG · Multimodal LLMs</div>
     </div>
-    <p class="hero-blurb">研究方向：强化学习驱动的检索与搜索智能体、<strong>视觉检索增强生成（Visual RAG）</strong>，以及多模态大模型系统。</p>
-    <div class="hero-links">
+    <nav class="rail-nav" aria-label="页面导航">
+      <ul>
+        <li><a href="#research">研究概览</a></li>
+        <li><a href="#news">近期动态</a></li>
+        <li><a href="#publications">代表论文</a></li>
+        <li><a href="#experience">研究经历</a></li>
+        <li><a href="#education">教育背景</a></li>
+        <li><a href="#awards">荣誉奖项</a></li>
+      </ul>
+    </nav>
+    <div class="rail-links">
       <a href="mailto:zijieguo2003@163.com">Email</a>
       <a href="https://github.com/zijieguo2003" target="_blank" rel="noopener noreferrer">GitHub</a>
       <a href="/blog/">技术博客</a>
       <a href="https://blog.csdn.net/zjjaibc" target="_blank" rel="noopener noreferrer">CSDN</a>
     </div>
+    <div class="theme-picker" id="theme-picker">
+      <button class="theme-btn" id="theme-toggle" type="button" aria-expanded="false" aria-controls="theme-menu" aria-label="选择页面主题">
+        <span class="theme-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>主题</span>
+      </button>
+      <div class="theme-menu" id="theme-menu" role="group" aria-label="预选主题" hidden>
+        <button class="theme-option" type="button" data-theme-choice="light" aria-pressed="false"><span class="theme-swatch swatch-light"></span>白纸</button>
+        <button class="theme-option" type="button" data-theme-choice="dark" aria-pressed="false"><span class="theme-swatch swatch-dark"></span>墨黑</button>
+        <button class="theme-option" type="button" data-theme-choice="paper" aria-pressed="false"><span class="theme-swatch swatch-paper"></span>暖纸</button>
+        <button class="theme-option" type="button" data-theme-choice="slate" aria-pressed="false"><span class="theme-swatch swatch-slate"></span>雾蓝</button>
+      </div>
+    </div>
   </header>
+
+<main class="content" id="main-content" tabindex="-1">
+
+  <section class="intro" aria-labelledby="intro-title">
+    <span class="intro-kicker">Research profile</span>
+    <h2 class="intro-title" id="intro-title">让智能体在复杂、异构的现实信息中可靠地检索、推理与行动。</h2>
+    <p class="intro-copy">我关注强化学习驱动的检索与搜索智能体、<strong>视觉检索增强生成（Visual RAG）</strong>，以及多模态大模型系统。研究目标是把更强的搜索策略、信息组织与后训练方法，转化为可验证、可落地的智能系统。</p>
+
+  </section>
+
+  <section class="sec" id="research" aria-labelledby="research-title">
+    <div class="sec-hd"><h2 id="research-title">研究概览</h2></div>
+    <div class="research-grid">
+      <article class="research-card">
+        <span class="research-index">01</span>
+        <h3>Agentic Search</h3>
+        <p>用规划、反思与强化学习，让智能体在异构私域数据中进行多步检索与深度研究。</p>
+      </article>
+      <article class="research-card">
+        <span class="research-index">02</span>
+        <h3>Visual RAG</h3>
+        <p>围绕长视频与视觉记忆建立高效检索机制，增强多模态模型的证据定位与回答能力。</p>
+      </article>
+      <article class="research-card">
+        <span class="research-index">03</span>
+        <h3>LLM Post-training</h3>
+        <p>以高质量数据、SFT 与 RL 提升领域模型的指令遵循、专业性和真实业务可靠性。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec" id="news" aria-labelledby="news-title">
+    <div class="sec-hd"><h2 id="news-title">近期动态</h2></div>
+    <div class="news-list">
+      <div class="news-item"><time class="news-date" datetime="2026-07">2026.07</time><div class="news-copy">获 <strong>ACM Multimedia 2026 EgoLink Challenge 第三名</strong>，聚焦长视频多模态检索与问答。</div></div>
+      <div class="news-item"><time class="news-date" datetime="2026-04">2026.04</time><div class="news-copy">加入 <strong>TeleAI</strong>，从事多模态大模型算法研究。</div></div>
+      <div class="news-item"><time class="news-date" datetime="2026-01">2026.01</time><div class="news-copy"><strong>IoDResearch</strong> 被 ICASSP 2026 接收，探索私域异构数据上的 Deep Research。</div></div>
+    </div>
+  </section>
 
   <!-- 教育经历 -->
   <section class="sec" id="education" aria-labelledby="education-title">
@@ -477,11 +614,11 @@
 
   <!-- 学术论文 -->
   <section class="sec" id="publications" aria-labelledby="publications-title">
-    <div class="sec-hd"><h2 id="publications-title">学术论文</h2></div>
+    <div class="sec-hd"><h2 id="publications-title">代表论文</h2></div>
     <div class="pub-list">
 
       <div class="pub">
-        <div class="pub-num">[1]</div>
+        <div class="pub-tag">ICASSP<span>2026</span></div>
         <div>
           <div class="pub-title">
             <a href="https://arxiv.org/abs/2510.01553" target="_blank" rel="noopener noreferrer">
@@ -489,17 +626,21 @@
             </a>
           </div>
           <div class="pub-authors">Shi Z, <strong>Guo Z</strong>, Ma X, Huang G, Ma Y, Jing X.</div>
-          <div class="pub-venue"><em>ICASSP 2026</em>（IEEE International Conference on Acoustics, Speech and Signal Processing）</div>
+          <div class="pub-venue">IEEE International Conference on Acoustics, Speech and Signal Processing</div>
           <div class="pub-badges">
-            <span class="badge badge-c">会议论文</span>
-            <span class="badge badge-ccfb">CCF-B</span>
-            <span class="badge badge-fa">第二作者</span>
+            <span class="badge">会议论文</span>
+            <span class="badge">CCF-B</span>
+            <span class="badge">第二作者</span>
+          </div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2510.01553" target="_blank" rel="noopener noreferrer">arXiv</a>
+            <a href="https://github.com/pkuNuclearGroup/IoDResearch" target="_blank" rel="noopener noreferrer">代码</a>
           </div>
         </div>
       </div>
 
       <div class="pub">
-        <div class="pub-num">[2]</div>
+        <div class="pub-tag">Sensors<span>2024</span></div>
         <div>
           <div class="pub-title">
             <a href="https://doi.org/10.3390/s24154779" target="_blank" rel="noopener noreferrer">
@@ -507,25 +648,28 @@
             </a>
           </div>
           <div class="pub-authors"><strong>Guo Z</strong>, Guo J, Huang Y, et al.</div>
-          <div class="pub-venue"><em>Sensors</em>, 2024, 24(15): 4779</div>
+          <div class="pub-venue">Sensors, 2024, 24(15): 4779 · JCR Q2 · IF 3.4</div>
           <div class="pub-badges">
-            <span class="badge badge-j">期刊论文</span>
-            <span class="badge badge-fa">第一作者</span>
+            <span class="badge">期刊论文</span>
+            <span class="badge">第一作者</span>
+          </div>
+          <div class="pub-links">
+            <a href="https://doi.org/10.3390/s24154779" target="_blank" rel="noopener noreferrer">DOI</a>
           </div>
         </div>
       </div>
 
       <div class="pub">
-        <div class="pub-num">[3]</div>
+        <div class="pub-tag">CCC<span>2023</span></div>
         <div>
           <div class="pub-title">
             Finger Vein Recognition Method Based on Self-Calibrated Convolution
           </div>
           <div class="pub-authors"><strong>Guo Z</strong>, Guo J, Huang Y, et al.</div>
-          <div class="pub-venue"><em>第 42 届中国控制会议（CCC 2023）</em>，IEEE，2023: 7831–7836</div>
+          <div class="pub-venue">第 42 届中国控制会议，IEEE，2023: 7831–7836</div>
           <div class="pub-badges">
-            <span class="badge badge-c">会议论文</span>
-            <span class="badge badge-fa">第一作者</span>
+            <span class="badge">会议论文</span>
+            <span class="badge">第一作者</span>
           </div>
         </div>
       </div>
@@ -544,25 +688,27 @@
         <div class="award-featured-meta">第三名 · ACM Multimedia 2026 Grand Challenge · 2026</div>
         <a class="award-link" href="https://ego-link.github.io/challenge2026/" target="_blank" rel="noopener noreferrer">赛事主页 ↗</a>
       </div>
-      <div class="award-row">
-        <span class="award-name">小米特等奖学金（全校仅 5 人）</span>
-        <span class="award-year">2024</span>
-      </div>
-      <div class="award-row">
-        <span class="award-name">中国大学生计算机设计大赛 国家级二等奖</span>
-        <span class="award-year">2024</span>
-      </div>
-      <div class="award-row">
-        <span class="award-name">国家奖学金</span>
-        <span class="award-year">2023</span>
-      </div>
-      <div class="award-row">
-        <span class="award-name">美国大学生数学建模竞赛 MCM Finalist（特等奖提名，全球前 2%）</span>
-        <span class="award-year">2023</span>
-      </div>
-      <div class="award-row">
-        <span class="award-name">蓝桥杯 C/C++ 组 江苏省一等奖</span>
-        <span class="award-year">2023</span>
+      <div class="award-grid">
+        <div class="award-row">
+          <span class="award-year">2024</span>
+          <span class="award-name">小米特等奖学金（全校仅 5 人）</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2024</span>
+          <span class="award-name">中国大学生计算机设计大赛 国家级二等奖</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">美国大学生数学建模竞赛 MCM Finalist（特等奖提名，全球前 2%）</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">国家奖学金</span>
+        </div>
+        <div class="award-row">
+          <span class="award-year">2023</span>
+          <span class="award-name">蓝桥杯 C/C++ 组 江苏省一等奖</span>
+        </div>
       </div>
     </div>
   </section>
@@ -592,90 +738,114 @@
 
 </main>
 
-<footer>最后更新：<time datetime="2026-07">2026 年 7 月</time> &nbsp;·&nbsp; 郭子杰</footer>
+  <footer>最后更新：<time datetime="2026-07">2026 年 7 月</time> &nbsp;·&nbsp; 郭子杰</footer>
+
+</div>
 
 <script>
   (function () {
     var root = document.documentElement;
+    var themePicker = document.getElementById('theme-picker');
     var themeBtn = document.getElementById('theme-toggle');
+    var themeMenu = document.getElementById('theme-menu');
     var themeMeta = document.getElementById('theme-color');
-    var menuBtn = document.getElementById('menu-toggle');
-    var navLinks = document.getElementById('nav-links');
-    var nav = document.querySelector('nav');
-    var media = window.matchMedia('(prefers-color-scheme: dark)');
-    var moonIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>';
-    var sunIcon = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.66 6.34l1.41-1.41"/></svg>';
+    var themeOptions = [].slice.call(document.querySelectorAll('[data-theme-choice]'));
+    var themeColors = { light: '#ffffff', dark: '#121212', paper: '#f5f0e6', slate: '#edf3f6' };
+    var themeNames = { light: '白纸', dark: '墨黑', paper: '暖纸', slate: '雾蓝' };
 
-    function savedTheme() {
-      try {
-        var saved = localStorage.getItem('theme');
-        return saved === 'dark' || saved === 'light' ? saved : null;
-      } catch (e) {
-        return null;
+    function selectedTheme() {
+      var theme = root.getAttribute('data-theme');
+      return Object.prototype.hasOwnProperty.call(themeColors, theme) ? theme : 'light';
+    }
+
+    function setTheme(theme, persist) {
+      if (!Object.prototype.hasOwnProperty.call(themeColors, theme)) theme = 'light';
+      root.setAttribute('data-theme', theme);
+      themeMeta.setAttribute('content', themeColors[theme]);
+      themeBtn.setAttribute('title', '当前主题：' + themeNames[theme]);
+      themeOptions.forEach(function (option) {
+        option.setAttribute('aria-pressed', String(option.getAttribute('data-theme-choice') === theme));
+      });
+      if (persist) {
+        try { localStorage.setItem('theme', theme); } catch (e) {}
       }
     }
-    function selectedTheme() {
-      return root.getAttribute('data-theme') || (media.matches ? 'dark' : 'light');
+
+    function setThemeMenu(open) {
+      themeMenu.hidden = !open;
+      themeBtn.setAttribute('aria-expanded', String(open));
+      if (open) {
+        var current = themeOptions.find(function (option) {
+          return option.getAttribute('data-theme-choice') === selectedTheme();
+        });
+        if (current) current.focus();
+      }
     }
-    function syncThemeControl() {
-      var dark = selectedTheme() === 'dark';
-      var label = dark ? '切换至浅色模式' : '切换至深色模式';
-      themeBtn.innerHTML = dark ? sunIcon : moonIcon;
-      themeBtn.setAttribute('aria-label', label);
-      themeBtn.setAttribute('title', label);
-      themeMeta.setAttribute('content', dark ? '#121212' : '#ffffff');
-    }
-    syncThemeControl();
+
+    setTheme(selectedTheme(), false);
 
     themeBtn.addEventListener('click', function () {
-      var next = selectedTheme() === 'dark' ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-      syncThemeControl();
+      setThemeMenu(themeBtn.getAttribute('aria-expanded') !== 'true');
     });
 
-    if (media.addEventListener) {
-      media.addEventListener('change', function () {
-        if (!savedTheme()) {
-          root.setAttribute('data-theme', media.matches ? 'dark' : 'light');
-          syncThemeControl();
-        }
+    themeOptions.forEach(function (option) {
+      option.addEventListener('click', function () {
+        setTheme(option.getAttribute('data-theme-choice'), true);
+        setThemeMenu(false);
+        themeBtn.focus();
       });
-    }
-
-    function setMenu(open) {
-      menuBtn.setAttribute('aria-expanded', String(open));
-      navLinks.classList.toggle('is-open', open);
-      menuBtn.textContent = open ? '收起' : '目录';
-    }
-
-    menuBtn.addEventListener('click', function () {
-      var open = menuBtn.getAttribute('aria-expanded') === 'true';
-      setMenu(!open);
-    });
-
-    navLinks.addEventListener('click', function (event) {
-      if (event.target.tagName === 'A' && window.innerWidth <= 680) {
-        setMenu(false);
-      }
-    });
-
-    document.addEventListener('keydown', function (event) {
-      if (event.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
-        setMenu(false);
-        menuBtn.focus();
-      }
     });
 
     document.addEventListener('click', function (event) {
-      if (window.innerWidth <= 680 && menuBtn.getAttribute('aria-expanded') === 'true' && !nav.contains(event.target)) {
-        setMenu(false);
+      if (!themePicker.contains(event.target)) setThemeMenu(false);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape' && themeBtn.getAttribute('aria-expanded') === 'true') {
+        setThemeMenu(false);
+        themeBtn.focus();
       }
     });
 
-    window.addEventListener('resize', function () {
-      if (window.innerWidth > 680) setMenu(false);
-    });
+    // Scroll-spy: highlight the rail link for whichever section is nearest
+    // the top of the viewport, so the rail doubles as a position indicator.
+    var links = [].slice.call(document.querySelectorAll('.rail-nav a'));
+    var targets = links
+      .map(function (a) { return document.querySelector(a.getAttribute('href')); })
+      .filter(Boolean);
+
+    if (targets.length && 'IntersectionObserver' in window) {
+      var visible = Object.create(null);
+
+      function markActive() {
+        var best = null;
+        var bestTop = Infinity;
+        targets.forEach(function (section) {
+          if (!visible[section.id]) return;
+          var top = section.getBoundingClientRect().top;
+          if (top < bestTop) { bestTop = top; best = section.id; }
+        });
+        // Nothing intersecting (mid-section on a tall block): keep the last
+        // section whose top has already scrolled past.
+        if (!best) {
+          targets.forEach(function (section) {
+            if (section.getBoundingClientRect().top <= 100) best = section.id;
+          });
+        }
+        links.forEach(function (a) {
+          a.classList.toggle('is-active', a.getAttribute('href') === '#' + best);
+        });
+      }
+
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) { visible[entry.target.id] = entry.isIntersecting; });
+        markActive();
+      }, { rootMargin: '-12% 0px -70% 0px', threshold: 0 });
+
+      targets.forEach(function (section) { observer.observe(section); });
+      window.addEventListener('scroll', markActive, { passive: true });
+      markActive();
+    }
   })();
 </script>
 
