@@ -1,5 +1,5 @@
 title                    : "Zijie Guo (郭子杰)"
-description              : "Master's student at Peking University. Research interests: Agentic Search, Visual RAG, and Multimodal LLMs."
+description              : "Research: Agentic Search · Visual RAG · Multimodal LLMs"
 repository               : "zijieguo2003/zijieguo2003.github.io"
 url                      : "https://zijieguo2003.github.io"
 baseurl                  : ""
@@ -48,7 +48,7 @@ keep_files:
   - .git
   - .svn
 encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd"
+markdown_ext: "md,markdown,mkdown,mkdn,mkd"
 markdown: kramdown
 highlighter: rouge
 lsi: false
