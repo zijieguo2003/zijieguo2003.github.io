@@ -50,8 +50,35 @@ Shi Z, **Guo Z**, Ma X, Huang G, Ma Y, Jing X.
 </div>
 </div>
 
-- [**DDP-FedFV: A Dual-Decoupling Personalized Federated Learning Framework for Finger Vein Recognition**](https://doi.org/10.3390/s24154779), **Guo Z**, Guo J, Huang Y, et al. *Sensors*, 2024, 24(15): 4779. JCR Q2, IF 3.4. **First author**.
-- **Finger Vein Recognition Method Based on Self-Calibrated Convolution**, **Guo Z**, Guo J, Huang Y, et al. *42nd Chinese Control Conference (CCC)*, IEEE, 2023: 7831–7836. **First author**.
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Sensors 2024</div><img src='images/ddp-fedfv-method.png' alt="DDP-FedFV dual-decoupling personalized federated learning framework" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[DDP-FedFV: A Dual-Decoupling Personalized Federated Learning Framework for Finger Vein Recognition](https://doi.org/10.3390/s24154779)
+
+**Guo Z**, Guo J, Huang Y, Zhang Y, Ren H.
+
+*Sensors, 2024, 24(15): 4779.*<br>
+[**Paper**](https://doi.org/10.3390/s24154779)
+
+- JCR Q2 · IF 3.4 · **First author**.
+- Combines model and feature decoupling with personalized weight aggregation for privacy-preserving finger vein recognition across heterogeneous clients.
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">CCC 2023</div><img src='images/ccc-self-calibrated-method.png' alt="Method overview of self-calibrated convolution for finger vein recognition" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[Finger Vein Recognition Method Based on Self-Calibrated Convolution](https://doi.org/10.23919/CCC58697.2023.10241112)
+
+**Guo Z**, Guo J, Huang Y, Zhang Y, Yan Y.
+
+*42nd Chinese Control Conference (CCC), IEEE, 2023: 7831–7836.*<br>
+[**Paper**](https://doi.org/10.23919/CCC58697.2023.10241112)
+
+- **First author**.
+- Adds coordinate attention to an SCConv-ResNet50 backbone and learns discriminative features with joint softmax and center-loss supervision.
+</div>
+</div>
 
 <span class='anchor' id='experience'></span>
 
