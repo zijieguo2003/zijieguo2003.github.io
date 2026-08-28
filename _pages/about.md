@@ -35,7 +35,7 @@ I am currently a Multimodal Algorithm Intern at [TeleAI](https://teleai.com.cn/)
 
 # 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICASSP 2026</div><img src='og.png' alt="IoDResearch" width="100%"></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICASSP 2026</div><img src='images/iodagents-method.png' alt="IoDAgents Planner, Worker Team, and Reporter Team framework" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [IoDResearch: Deep Research on Private Heterogeneous Data via the Internet of Data](https://arxiv.org/abs/2510.01553)
