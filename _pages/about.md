@@ -11,21 +11,13 @@ redirect_from:
 
 <span class='anchor' id='about-me'></span>
 
-<div class="intro-card" markdown="1">
-<div class="intro-card__eyebrow">M.Eng. Student · Peking University</div>
-
-# Building reliable search and reasoning systems for multimodal AI.
-
 I am a Master's student in Electronic Information at the [School of Software and Microelectronics, Peking University](https://ss.pku.edu.cn/), advised by researchers at the Center for Data Space Technology and Systems. My research focuses on **Agentic Search**, **Visual Retrieval-Augmented Generation (Visual RAG)**, and **multimodal large language models**.
 
 I am currently a Multimodal Algorithm Intern at [TeleAI](https://teleai.com.cn/). Previously, I worked on LLM post-training, agent engineering, and RAG systems at Meituan and the Beijing Academy of Big Data. I enjoy turning stronger search strategies, information organization, and post-training methods into reliable systems that can be evaluated and deployed.
 
-<div class="research-tags"><span>Agentic Search</span><span>Visual RAG</span><span>Multimodal LLMs</span><span>Post-training</span></div>
-</div>
-
 <span class='anchor' id='research'></span>
 
-# Research Interests
+# 🔬 Research Interests
 
 - **Agentic Search:** planning, reflection, and reinforcement learning for multi-step retrieval and deep research over heterogeneous private data.
 - **Visual RAG:** efficient retrieval for long videos and visual memory, enabling multimodal models to ground answers in verifiable evidence.
@@ -33,17 +25,17 @@ I am currently a Multimodal Algorithm Intern at [TeleAI](https://teleai.com.cn/)
 
 <span class='anchor' id='news'></span>
 
-# News
+# 🔥 News
 
-- <span class="news-date">2026.07</span> 🏆 Our team won **Third Place** in the [ACM Multimedia 2026 EgoLink Challenge](https://ego-link.github.io/challenge2026/), on long-video multimodal retrieval and question answering.
-- <span class="news-date">2026.04</span> Joined **TeleAI** as a Multimodal Algorithm Intern.
-- <span class="news-date">2026.01</span> **IoDResearch** was accepted by **ICASSP 2026**.
+- *2026.07*: 🏆 Our team won **Third Place** in the [ACM Multimedia 2026 EgoLink Challenge](https://ego-link.github.io/challenge2026/), on long-video multimodal retrieval and question answering.
+- *2026.04*: Joined **TeleAI** as a Multimodal Algorithm Intern.
+- *2026.01*: **IoDResearch** was accepted by **ICASSP 2026**.
 
 <span class='anchor' id='publications'></span>
 
-# Selected Publications
+# 📝 Publications
 
-<div class='paper-box'><div class='paper-box-image'><div class="paper-visual" aria-label="IoDResearch visual"><span class="badge">ICASSP 2026</span><strong>IoDResearch</strong><small>Planner · Worker · Reporter</small><span class="paper-visual__line"></span><em>Deep research over private heterogeneous data</em></div></div>
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICASSP 2026</div><img src='og.png' alt="IoDResearch" width="100%"></div></div>
 <div class='paper-box-text' markdown="1">
 
 [IoDResearch: Deep Research on Private Heterogeneous Data via the Internet of Data](https://arxiv.org/abs/2510.01553)
@@ -63,7 +55,7 @@ Shi Z, **Guo Z**, Ma X, Huang G, Ma Y, Jing X.
 
 <span class='anchor' id='experience'></span>
 
-# Research & Internships
+# 💼 Research & Internships
 
 - *2026.04 – Present*, **TeleAI**, Multimodal Algorithm Intern, Beijing. Research on multimodal large language models.
 - *2025.10 – 2026.01*, **Meituan**, LLM Algorithm Engineer Intern, Beijing.
@@ -78,7 +70,7 @@ Shi Z, **Guo Z**, Ma X, Huang G, Ma Y, Jing X.
 
 <span class='anchor' id='education'></span>
 
-# Education
+# 📖 Education
 
 - *2025.09 – Present*, **Peking University**, School of Software and Microelectronics, M.Eng. in Electronic Information.
 - *2021.09 – 2025.06*, **Nanjing University of Posts and Telecommunications**, B.Eng. in Computer Science and Technology. Ranked **1 / 266**; GPA **4.63 / 5.0** (96.3 / 100).
@@ -86,16 +78,12 @@ Shi Z, **Guo Z**, Ma X, Huang G, Ma Y, Jing X.
 
 <span class='anchor' id='awards'></span>
 
-# Honors & Awards
+# 🎖 Honors and Awards
 
-<div class="award-card">
-<div class="award-card__year">2026</div>
-<div class="award-card__content">
-<span class="award-card__label">Featured Award</span>
-<h2>ACM Multimedia 2026 EgoLink Challenge</h2>
-<p><strong>Third Place</strong> · ACM Multimedia 2026 Grand Challenge</p>
-<a href="https://ego-link.github.io/challenge2026/">Competition homepage <span aria-hidden="true">↗</span></a>
-</div>
+<div class="notice--info" markdown="1">
+**ACM Multimedia 2026 EgoLink Challenge**<br>
+**Third Place** · ACM Multimedia 2026 Grand Challenge · 2026<br>
+[Competition homepage](https://ego-link.github.io/challenge2026/)
 </div>
 
 - *2024*, Xiaomi Special Scholarship (5 recipients university-wide).
@@ -106,7 +94,7 @@ Shi Z, **Guo Z**, Ma X, Huang G, Ma Y, Jing X.
 
 <span class='anchor' id='skills'></span>
 
-# Skills
+# 🧰 Skills
 
 - **Post-training:** LoRA, SFT, DPO, GRPO, PPO, LLaMA-Factory, veRL, DeepSpeed.
 - **Agent & RAG:** Multi-Agent Systems, RAG Pipeline, Hybrid Retrieval, Knowledge Graphs.
