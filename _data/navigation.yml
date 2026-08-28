@@ -1,0 +1,18 @@
+# Navigation follows the original AcadHomepage structure.
+main:
+  - title: "About Me"
+    url: "/#about-me"
+  - title: "Research"
+    url: "/#research"
+  - title: "News"
+    url: "/#news"
+  - title: "Publications"
+    url: "/#publications"
+  - title: "Experience"
+    url: "/#experience"
+  - title: "Education"
+    url: "/#education"
+  - title: "Honors & Awards"
+    url: "/#awards"
+  - title: "Skills"
+    url: "/#skills"

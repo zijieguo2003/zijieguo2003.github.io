@@ -1,0 +1,90 @@
+title                    : "Zijie Guo (郭子杰)"
+description              : "Master's student at Peking University. Research interests: Agentic Search, Visual RAG, and Multimodal LLMs."
+repository               : "zijieguo2003/zijieguo2003.github.io"
+url                      : "https://zijieguo2003.github.io"
+baseurl                  : ""
+google_scholar_stats_use_cdn : false
+
+# Site Author
+author:
+  name             : "Zijie Guo (郭子杰)"
+  avatar           : "avatar.png"
+  bio              : "Peking University · M.Eng. Student"
+  location         : "Beijing, China"
+  employer         : "School of Software and Microelectronics"
+  email            : "zijieguo2003@163.com"
+  github           : "zijieguo2003"
+  googlescholar    :
+  uri              : "https://zijieguo2003.github.io/"
+  linkedin         :
+  dblp             :
+  orcid            :
+  researchgate     :
+  pubmed           :
+
+# Keep GitHub Pages' native Jekyll behaviour while using AcadHomepage's
+# original page, layouts, navigation, and stylesheet structure.
+include:
+  - .htaccess
+  - _pages
+  - files
+exclude:
+  - docs
+  - google_scholar_crawler
+  - "*.sublime-project"
+  - "*.sublime-workspace"
+  - .asset-cache
+  - .bundle
+  - .jekyll-assets-cache
+  - .sass-cache
+  - .github
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - verify-desktop.png
+  - node_modules
+  - vendor
+keep_files:
+  - .git
+  - .svn
+encoding: "utf-8"
+markdown_ext: "markdown,mkdown,mkdn,mkd"
+markdown: kramdown
+highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
+kramdown:
+  input: GFM
+  hard_wrap: false
+  auto_ids: true
+  footnote_nr: 1
+  entity_output: as_char
+  toc_levels: 1..6
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  enable_coderay: false
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+      author_profile: true
+sass:
+  sass_dir: _sass
+  style: compressed
+permalink: /:categories/:title/
+timezone: Asia/Shanghai
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-redirect-from
+whitelist:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jemoji
