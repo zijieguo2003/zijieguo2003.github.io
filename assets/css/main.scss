@@ -376,8 +376,10 @@ body {
 
 .sidebar .author__name {
     color: #172f49;
+    font-size: 1.16em;
     font-weight: 750;
     letter-spacing: -.02em;
+    white-space: nowrap;
 }
 
 .sidebar .author__bio {
@@ -428,6 +430,23 @@ body {
 }
 
 @include breakpoint(max-width $medium) {
+    .masthead__inner-wrap {
+        padding-right: 6.1em;
+    }
+
+    .greedy-nav button {
+        width: 2.75rem;
+        height: 2.35rem;
+        border-radius: 8px;
+        background: #edf5fb;
+    }
+
+    .greedy-nav .navicon,
+    .greedy-nav .navicon:before,
+    .greedy-nav .navicon:after {
+        background: #315f84;
+    }
+
     #main {
         margin-top: 1em;
         padding-left: .75em;
@@ -464,7 +483,7 @@ body {
 
     .page-views {
         top: .62em;
-        right: .7em;
+        right: 4.35em;
     }
 
     .page-views__label { display: none; }
