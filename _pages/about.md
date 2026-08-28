@@ -35,6 +35,21 @@ I am currently a Multimodal Algorithm Intern at [TeleAI](https://teleai.com.cn/)
 
 # 📝 Publications
 
+<div class='paper-box'><div class='paper-box-image'><div><div class="badge">Preprint 2026</div><img src='images/grpo-evolution-tree.jpg' alt="Evolutionary tree of GRPO variants across six research directions" width="100%" loading="lazy"></div></div>
+<div class='paper-box-text' markdown="1">
+
+[The GRPO Family: A Systematic Survey of Variants, Theory, and Applications](https://fredericvan.github.io/GRPO-Family-Survey/)
+
+Xie S†, Shi Z†, Wang Z†, Huang D, An H, **Guo Z**, Nie S, Xin C, Jiang Y, Na Y, Ma Y, Huang G, Jing X*.
+
+*Preprint, 2026.*<br>
+[**Paper**](https://doi.org/10.13140/RG.2.2.26262.92485) | [**Project**](https://fredericvan.github.io/GRPO-Family-Survey/) | [**Code**](https://github.com/FredericVAN/GRPO-Family-Survey)
+
+- The first comprehensive survey of the GRPO variant ecosystem, covering 20+ methods across six research directions.
+- Develops a dual taxonomy and a unified theoretical framework for advantage normalization, bias–variance trade-offs, and practical method selection.
+</div>
+</div>
+
 <div class='paper-box'><div class='paper-box-image'><div><div class="badge">ICASSP 2026</div><img src='images/iodagents-method.png' alt="IoDAgents Planner, Worker Team, and Reporter Team framework" width="100%" loading="lazy"></div></div>
 <div class='paper-box-text' markdown="1">
 
