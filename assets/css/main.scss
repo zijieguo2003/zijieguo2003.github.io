@@ -441,6 +441,15 @@ body {
         background: #edf5fb;
     }
 
+    .greedy-nav .visible-links .masthead__menu-item:not(.masthead__menu-home-item) {
+        display: none !important;
+    }
+
+    .masthead__menu-home-item {
+        display: block !important;
+        padding-right: 0;
+    }
+
     .greedy-nav .navicon,
     .greedy-nav .navicon:before,
     .greedy-nav .navicon:after {
