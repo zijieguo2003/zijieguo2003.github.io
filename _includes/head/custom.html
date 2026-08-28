@@ -1,3 +1,7 @@
+{% if page.profile_gate %}
+<script>document.documentElement.classList.add('profile-locked');</script>
+{% endif %}
+
 <link rel="icon" type="image/svg+xml" href="{{ '/favicon.svg' | relative_url }}">
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | relative_url }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | relative_url }}">

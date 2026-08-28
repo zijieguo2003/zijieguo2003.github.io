@@ -10,9 +10,12 @@
 
   <div class="author__content">
     <h3 class="author__name">{{ author.name }}</h3>
-    {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
+    {% unless page.profile_gate %}
+      {% if author.bio %}<p class="author__bio">{{ author.bio }}</p>{% endif %}
+    {% endunless %}
   </div>
 
+  {% unless page.profile_gate %}
   <div class="author__urls-wrapper">
     <!-- <button class="btn btn--inverse">More Info & Contact</button> -->
     <ul class="author__urls social-icons">
@@ -215,4 +218,5 @@
       {% endif %}
     </div>
   </div>
+  {% endunless %}
 </div>
