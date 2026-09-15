@@ -53,6 +53,35 @@
     return profile;
   }
 
+  // main.min.js 里的 lightbox 初始化只在页面加载时跑一次，注入进来的图片链接需要重新绑定
+  function refreshImageLightbox() {
+    var $ = window.jQuery;
+    if (!$ || !$.fn || !$.fn.magnificPopup) {
+      return;
+    }
+    var links = $('.page__content a[href$=".png"], .page__content a[href$=".jpg"], ' +
+      '.page__content a[href$=".jpeg"], .page__content a[href$=".gif"]');
+    if (!links.length) {
+      return;
+    }
+    links.addClass('image-popup').magnificPopup({
+      type: 'image',
+      tLoading: 'Loading image #%curr%...',
+      gallery: {
+        enabled: true,
+        navigateByImgClick: true,
+        preload: [0, 1]
+      },
+      image: {
+        tError: '<a href="%url%">Image #%curr%</a> could not be loaded.'
+      },
+      removalDelay: 500,
+      mainClass: 'mfp-zoom-in',
+      closeOnContentClick: true,
+      midClick: true
+    });
+  }
+
   function showFullProfile(profile) {
     var content = document.querySelector('.page__content');
     var sidebar = document.querySelector('.profile_box');
@@ -64,6 +93,7 @@
     sidebar.innerHTML = profile.sidebarHtml;
     document.documentElement.classList.remove('profile-locked');
     document.documentElement.classList.add('profile-unlocked');
+    refreshImageLightbox();
     window.dispatchEvent(new Event('resize'));
     return true;
   }

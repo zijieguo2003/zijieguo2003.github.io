@@ -1,0 +1,17 @@
+# 本地密钥材料：口令、私链令牌、明文档案
+# 这些是「加密私密档案」的钥匙与明文来源，一旦提交就等于把完整主页公开
+private/
+
+# 抓取线上页面、Chrome 调试配置、渲染中间产物等临时文件
+tmp/
+
+# Jekyll 构建产物与缓存
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+.asset-cache/
+.bundle/
+
+# 已由 _config.yml 的 exclude 排除，这里再兜一层
+verify-desktop.png

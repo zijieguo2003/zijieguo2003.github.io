@@ -38,6 +38,8 @@ exclude:
   - .jekyll-assets-cache
   - .sass-cache
   - .github
+  - tmp
+  - private
   - Gemfile
   - Gemfile.lock
   - README.md
