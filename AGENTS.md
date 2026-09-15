@@ -141,6 +141,23 @@ curl.exe -sS -x http://127.0.0.1:7890 -H "Authorization: Bearer $token" `
 返回里 `status` 为 `built` / `errored` / `building`，`error.message` 只会给笼统的
 `Page build failed.`——所以要么靠页面上的构建日志，要么用排除法逐项定位。
 
+### 8. 推送/拉取在本机必须走代理，且容易中途断流
+git 全局配了 `http.proxy = http://127.0.0.1:7890`（FlClash）。代理没开时表现为
+`Failed to connect to github.com port 443 via 127.0.0.1`；**直连 GitHub 会被 reset**，不用试。
+代理开着但仍可能中途断（`RPC failed; curl 52 schannel: server closed abruptly`，
+随后 git 还会误导性地说 `Everything up-to-date`——**务必用 `git ls-remote origin refs/heads/master`
+核对远端到底有没有收到**）。解法：
+
+```bash
+git -c http.version=HTTP/1.1 -c http.postBuffer=524288000 push origin master
+```
+
+Node 侧访问线上（`scripts/verify-live.mjs`）需要：
+
+```powershell
+$env:HTTPS_PROXY='http://127.0.0.1:7890'; $env:NODE_USE_ENV_PROXY='1'
+```
+
 ---
 
 ## 验证手法（没有本地构建时的替代）
