@@ -40,9 +40,12 @@ exclude:
   - .github
   - tmp
   - private
+  - scripts
   - Gemfile
   - Gemfile.lock
   - README.md
+  - AGENTS.md
+  - CLAUDE.md
   - verify-desktop.png
   - node_modules
   - vendor
