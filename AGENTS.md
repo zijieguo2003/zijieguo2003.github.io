@@ -118,6 +118,29 @@ Jekyll 默认忽略下划线开头的目录，不加这条首页就没了。`fil
 旧密文是完全正常的 UTF-8。真正的教训只有一条：**口令丢了无法恢复**（AES-GCM 无验证器、无备份），
 只能靠 `private/profile.json` 重新加密，或用仍有效的私链令牌确认可用性。
 
+### 7. 根目录的 .md 会让 GitHub Pages 构建失败（2026-09-15 踩过）
+本文件（`AGENTS.md`）和 `README.md` 正文里出现过 `{% unless page.profile_gate %}` 这类 Liquid 标签。
+GitHub Pages 的 legacy Jekyll 构建会把根目录的 `.md` 当模板解析，**未闭合的 `{% unless %}` 直接导致构建失败**。
+写在反引号或代码块里**也没用**——Liquid 先于 Markdown 渲染。
+现象很坑：`git push` 成功、线上却一直停在旧版本（新文件 404、旧密文照旧）。
+
+`README.md` 从一开始就在 `exclude` 里，多半是前人踩过同一个坑；`AGENTS.md` / `CLAUDE.md` / `scripts`
+也已一并排除。新增根目录文档时**务必同步加进 `_config.yml` 的 `exclude`**。
+
+定位手段（Pages API 需要鉴权，用 git 里已存的凭据即可，注意别把令牌打印出来）：
+
+```powershell
+$in = "protocol=https`nhost=github.com`n`n"
+$out = $in | git credential fill 2>$null
+$token = (($out | Where-Object { $_ -like 'password=*' }) -replace '^password=','')
+curl.exe -sS -x http://127.0.0.1:7890 -H "Authorization: Bearer $token" `
+  -H 'Accept: application/vnd.github+json' `
+  'https://api.github.com/repos/zijieguo2003/zijieguo2003.github.io/pages/builds?per_page=5'
+```
+
+返回里 `status` 为 `built` / `errored` / `building`，`error.message` 只会给笼统的
+`Page build failed.`——所以要么靠页面上的构建日志，要么用排除法逐项定位。
+
 ---
 
 ## 验证手法（没有本地构建时的替代）
@@ -126,11 +149,16 @@ Jekyll 默认忽略下划线开头的目录，不加这条首页就没了。`fil
 # 1) 密文 ↔ 明文 一致性（浏览器同款 WebCrypto）
 node scripts/profile.mjs verify
 
+# 1b) 线上部署验收：拉线上真实密文解密比对 + 证书资源 HEAD 检查
+#     （本机需先设 $env:HTTPS_PROXY 与 $env:NODE_USE_ENV_PROXY='1'）
+node scripts/verify-live.mjs
+
 # 2) 离线渲染沙盒：把解密内容注入抓取的线上页面骨架，Chrome 无头截图
 #    骨架 = tmp/live-*.html，CSS = 线上 /assets/css/main.css 的本地副本（tmp/live-main.css）
 #    注意：抓到的页面里资源是绝对路径 /assets/...，且带 ?v= 缓存戳，转 file:// 前要
 #    1) 去掉前导 /  2) 先删 ?v=...（先删 ?v=1 会把 ?v=1787916306 削成 "main.css787916306"）
 #    截图：chrome --headless=new --window-size=1240,1300 --screenshot=out.png file:///.../awards.html
+# 抓线上文件统一带 ?cb=<ticks> 缓存穿透参数，避免 CDN 缓存干扰判断
 ```
 
 ---

@@ -77,6 +77,7 @@ git add -A && git commit -m "..." && git push
 | `node scripts/profile.mjs decrypt` | 用口令解开主密文，写回 `private/profile.json` |
 | `node scripts/profile.mjs rotate-passphrase` | 换新口令并重新发布（旧口令立即作废） |
 | `node scripts/profile.mjs rotate-token` | 换新私链令牌并重新发布（旧的私链立即失效） |
+| `node scripts/verify-live.mjs` | **推送后验收**：拉线上真实密文解密比对，并检查证书资源是否可访问 |
 
 > 用 Node 而不是 PowerShell：本站密文是 AES-256-GCM，而 Windows PowerShell 5.1
 > （.NET Framework）没有 `System.Security.Cryptography.AesGcm`，本机也没装 PowerShell 7。
@@ -125,9 +126,16 @@ git add -A && git commit -m "..." && git push
 可用的替代验证方式：
 
 1. `node scripts/profile.mjs verify`——确认密文与明文一致、浏览器能解开。
-2. 离线渲染沙盒：把解密后的 `contentHtml` / `sidebarHtml` 注入抓取下来的线上页面骨架，
+2. `node scripts/verify-live.mjs`——推送后验收线上：拉真实密文解密比对 + 资源可访问性检查。
+   本机走代理时先设 `$env:HTTPS_PROXY='http://127.0.0.1:7890'; $env:NODE_USE_ENV_PROXY='1'`。
+3. 离线渲染沙盒：把解密后的 `contentHtml` / `sidebarHtml` 注入抓取下来的线上页面骨架，
    去掉脚本与 CDN 引用后用 Chrome 无头截图检查排版（本次加证书卡片时就是这么验的）。
-3. 推送到 `master` 后等 GitHub Pages 重建，再在浏览器里用私链核对。
+4. 推送到 `master` 后等 GitHub Pages 重建，再在浏览器里用私链核对。
+
+> ⚠️ 推送成功 ≠ 线上更新。GitHub Pages 的 legacy 构建会**静默失败**（`git push` 一切正常、
+> 线上却停在旧版本）。根目录 `.md` 里出现 `{% ... %}` 这类 Liquid 标签就是典型原因——
+> 本仓库的 `README.md` / `AGENTS.md` / `CLAUDE.md` / `scripts` 都在 `_config.yml` 的
+> `exclude` 里，**新增根目录文档时务必一并排除**。
 
 ---
 
