@@ -149,14 +149,14 @@
     gap: 24px;
     margin: 1.5em 0;
     padding: 16px 24px;
-    border: 1px solid rgba(127, 210, 221, .28);
+    border: 1px solid rgba(124, 175, 193, .28);
     border-radius: 16px;
     background:
-        radial-gradient(ellipse at 100% 0%, rgba(167, 238, 214, .40), transparent 78%),
-        radial-gradient(ellipse at 34% 110%, rgba(43, 113, 181, .42), transparent 74%),
-        linear-gradient(110deg, #142238 0%, #1c4057 34%, #28676f 68%, #68a99e 100%);
-    color: #f0f8fc;
-    box-shadow: 0 8px 24px rgba(17, 49, 68, .11), inset 0 1px 0 rgba(255, 255, 255, .17);
+        radial-gradient(ellipse at 8% 0%, rgba(255, 255, 255, .85), transparent 70%),
+        radial-gradient(ellipse at 54% 110%, rgba(169, 216, 248, .42), transparent 76%),
+        linear-gradient(110deg, #eaf2ff 0%, #dcebf9 34%, #cdeee8 70%, #e6f7de 100%);
+    color: #294b60;
+    box-shadow: 0 8px 24px rgba(60, 105, 122, .08), inset 0 1px 0 rgba(255, 255, 255, .90);
     transition: box-shadow .25s ease;
 
     &::before {
@@ -165,7 +165,7 @@
         inset: 0;
         z-index: -1;
         border-radius: inherit;
-        background: linear-gradient(135deg, rgba(255, 255, 255, .07), transparent 38%, rgba(155, 233, 225, .06));
+        background: linear-gradient(135deg, rgba(255, 255, 255, .28), transparent 38%, rgba(255, 255, 255, .12));
         pointer-events: none;
     }
     &::after {
@@ -173,61 +173,61 @@
         position: absolute;
         z-index: -1;
         inset: 0;
-        background: linear-gradient(155deg, transparent 25%, rgba(180, 240, 227, .07) 58%, transparent 85%);
+        background: linear-gradient(155deg, transparent 25%, rgba(255, 255, 255, .16) 58%, transparent 85%);
         pointer-events: none;
     }
-    &:hover { box-shadow: 0 10px 28px rgba(17, 49, 68, .15), inset 0 1px 0 rgba(255, 255, 255, .22); }
+    &:hover { box-shadow: 0 10px 28px rgba(60, 105, 122, .12), inset 0 1px 0 rgba(255, 255, 255, .95); }
 
     .award-card__text { min-width: 0; }
     .award-card__eyebrow {
         margin: 0 0 9px;
-        color: #a8d6df;
+        color: #536f86;
         font-size: 11px;
         font-weight: 600;
         letter-spacing: .17em;
         text-transform: uppercase;
     }
-    .award-card__title { margin: 0 0 12px; font-size: 29px; line-height: 1.2; letter-spacing: -.025em; color: #f7fcff; font-weight: 700; }
-    .award-card__result { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 13px; font-size: 13px; color: #c4dae6; }
-    .award-card__members { margin: 0 0 16px; color: #d0e3ea; font-size: 13px; line-height: 1.7; }
-    .award-card__members strong { color: #f7fcff; font-weight: 700; }
-    .award-card__place { display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border: 1px solid rgba(172, 233, 230, .24); border-radius: 7px; background: rgba(134, 223, 219, .10); color: #dbfaf4; font-weight: 700; }
-    .award-card__place i { color: #aae5df; }
+    .award-card__title { margin: 0 0 12px; font-size: 29px; line-height: 1.2; letter-spacing: -.025em; color: #203e53; font-weight: 700; }
+    .award-card__result { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 13px; font-size: 13px; color: #486576; }
+    .award-card__members { margin: 0 0 16px; color: #486576; font-size: 13px; line-height: 1.7; }
+    .award-card__members strong { color: #203e53; font-weight: 700; }
+    .award-card__place { display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border: 1px solid rgba(83, 151, 149, .22); border-radius: 7px; background: rgba(255, 255, 255, .52); color: #286561; font-weight: 700; }
+    .award-card__place i { color: #39877e; }
     .award-card__links { display: flex; flex-wrap: wrap; gap: 10px; }
     .award-card__links a {
         display: inline-flex;
         align-items: center;
         gap: 7px;
         padding: 7px 13px;
-        border: 1px solid rgba(225, 246, 255, .20);
+        border: 1px solid rgba(91, 137, 161, .24);
         border-radius: 8px;
-        color: #e9f7fc;
-        background: rgba(224, 242, 255, .08);
+        color: #30586f;
+        background: rgba(255, 255, 255, .52);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         text-decoration: none;
         font-size: 12px;
         line-height: 1.5;
         transition: background-color .15s, border-color .15s;
-        &:hover { background: rgba(225, 247, 255, .17); border-color: rgba(220, 251, 250, .48); color: #fff; }
-        &:focus-visible { outline: 2px solid #b2f2e7; outline-offset: 3px; }
+        &:hover { background: rgba(255, 255, 255, .90); border-color: rgba(91, 137, 161, .45); color: #203e53; }
+        &:focus-visible { outline: 2px solid #39877e; outline-offset: 3px; }
     }
     .award-card__preview {
         position: relative;
         display: block;
         max-width: 100%;
         padding: 5px;
-        border: 1px solid rgba(231, 255, 251, .25);
+        border: 1px solid rgba(255, 255, 255, .90);
         border-radius: 9px;
-        background: rgba(221, 255, 251, .08);
+        background: rgba(255, 255, 255, .50);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         text-align: center;
         text-decoration: none;
-        box-shadow: 0 8px 20px rgba(3, 25, 37, .13), inset 0 1px 0 rgba(255, 255, 255, .12);
+        box-shadow: 0 5px 18px rgba(54, 105, 114, .10), inset 0 1px 0 #fff;
         transition: background-color .2s;
-        &:hover { background: rgba(221, 255, 251, .14); }
-        &:focus-visible { outline: 2px solid #b2f2e7; outline-offset: 3px; }
+        &:hover { background: rgba(255, 255, 255, .85); }
+        &:focus-visible { outline: 2px solid #39877e; outline-offset: 3px; }
     }
     .award-card__preview img {
         display: block;
@@ -239,7 +239,7 @@
         background: #fff;
         box-shadow: none;
     }
-    .award-card__caption { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); padding: 5px 10px; border-radius: 5px; background: rgba(17, 43, 57, .90); color: #f0f8fc; font-size: 10px; white-space: nowrap; opacity: 0; transition: opacity .2s; }
+    .award-card__caption { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); padding: 5px 10px; border: 1px solid rgba(91, 137, 161, .24); border-radius: 5px; background: rgba(247, 253, 252, .96); color: #30586f; font-size: 10px; white-space: nowrap; opacity: 0; transition: opacity .2s; }
     .award-card__preview:hover .award-card__caption,
     .award-card__preview:focus-visible .award-card__caption { opacity: 1; }
     @media (max-width: 600px) {
