@@ -144,19 +144,19 @@
     isolation: isolate;
     overflow: hidden;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
+    grid-template-columns: minmax(0, 1fr) minmax(240px, 320px);
     align-items: center;
-    gap: 32px;
+    gap: 24px;
     margin: 1.5em 0;
-    padding: 28px 32px;
+    padding: 16px 24px;
     border: 1px solid rgba(127, 210, 221, .28);
-    border-radius: 20px;
+    border-radius: 16px;
     background:
-        radial-gradient(ellipse at 88% 8%, rgba(88, 208, 201, .48), transparent 46%),
-        radial-gradient(ellipse at 47% 110%, rgba(49, 112, 166, .48), transparent 58%),
-        linear-gradient(118deg, #101e36 0%, #123347 53%, #15565f 100%);
+        radial-gradient(ellipse at 100% 0%, rgba(167, 238, 214, .40), transparent 78%),
+        radial-gradient(ellipse at 34% 110%, rgba(43, 113, 181, .42), transparent 74%),
+        linear-gradient(110deg, #142238 0%, #1c4057 34%, #28676f 68%, #68a99e 100%);
     color: #f0f8fc;
-    box-shadow: 0 12px 32px rgba(17, 49, 68, .14), inset 0 1px 0 rgba(255, 255, 255, .17);
+    box-shadow: 0 8px 24px rgba(17, 49, 68, .11), inset 0 1px 0 rgba(255, 255, 255, .17);
     transition: box-shadow .25s ease;
 
     &::before {
@@ -172,29 +172,24 @@
         content: '';
         position: absolute;
         z-index: -1;
-        width: 340px;
-        height: 340px;
-        right: -100px;
-        top: -230px;
-        border: 1px solid rgba(195, 255, 250, .15);
-        border-radius: 50%;
-        box-shadow: 0 0 0 52px rgba(157, 245, 234, .025), 0 0 0 104px rgba(157, 245, 234, .02);
+        inset: 0;
+        background: linear-gradient(155deg, transparent 25%, rgba(180, 240, 227, .07) 58%, transparent 85%);
         pointer-events: none;
     }
-    &:hover { box-shadow: 0 16px 40px rgba(17, 49, 68, .19), inset 0 1px 0 rgba(255, 255, 255, .22); }
+    &:hover { box-shadow: 0 10px 28px rgba(17, 49, 68, .15), inset 0 1px 0 rgba(255, 255, 255, .22); }
 
     .award-card__text { min-width: 0; }
     .award-card__eyebrow {
-        margin: 0 0 12px;
+        margin: 0 0 9px;
         color: #a8d6df;
         font-size: 11px;
         font-weight: 600;
         letter-spacing: .17em;
         text-transform: uppercase;
     }
-    .award-card__title { margin: 0 0 14px; font-size: 30px; line-height: 1.2; letter-spacing: -.025em; color: #f7fcff; font-weight: 700; }
+    .award-card__title { margin: 0 0 12px; font-size: 29px; line-height: 1.2; letter-spacing: -.025em; color: #f7fcff; font-weight: 700; }
     .award-card__result { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 13px; font-size: 13px; color: #c4dae6; }
-    .award-card__members { margin: 0 0 22px; color: #c4dae6; font-size: 13px; line-height: 1.7; }
+    .award-card__members { margin: 0 0 16px; color: #d0e3ea; font-size: 13px; line-height: 1.7; }
     .award-card__members strong { color: #f7fcff; font-weight: 700; }
     .award-card__place { display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border: 1px solid rgba(172, 233, 230, .24); border-radius: 7px; background: rgba(134, 223, 219, .10); color: #dbfaf4; font-weight: 700; }
     .award-card__place i { color: #aae5df; }
@@ -218,11 +213,12 @@
         &:focus-visible { outline: 2px solid #b2f2e7; outline-offset: 3px; }
     }
     .award-card__preview {
+        position: relative;
         display: block;
         max-width: 100%;
-        padding: 8px 8px 7px;
+        padding: 5px;
         border: 1px solid rgba(231, 255, 251, .25);
-        border-radius: 12px;
+        border-radius: 9px;
         background: rgba(221, 255, 251, .08);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
@@ -243,14 +239,16 @@
         background: #fff;
         box-shadow: none;
     }
-    .award-card__caption { display: block; margin-top: 8px; color: #d0e9ee; font-size: 10px; letter-spacing: .03em; }
+    .award-card__caption { position: absolute; left: 50%; bottom: 12px; transform: translateX(-50%); padding: 5px 10px; border-radius: 5px; background: rgba(17, 43, 57, .90); color: #f0f8fc; font-size: 10px; white-space: nowrap; opacity: 0; transition: opacity .2s; }
+    .award-card__preview:hover .award-card__caption,
+    .award-card__preview:focus-visible .award-card__caption { opacity: 1; }
     @media (max-width: 600px) {
         grid-template-columns: minmax(0, 1fr);
-        gap: 24px;
-        padding: 24px;
+        gap: 18px;
+        padding: 20px;
         border-radius: 16px;
         .award-card__title { font-size: 27px; }
-        .award-card__preview { width: 200px; justify-self: start; }
+        .award-card__preview { width: min(100%, 280px); justify-self: center; }
     }
     @media (prefers-reduced-motion: reduce) { &, a { transition: none; } }
 }
