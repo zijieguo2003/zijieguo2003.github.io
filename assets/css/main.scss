@@ -140,66 +140,117 @@
 .profile-locked .masthead__menu-home-item { display: table-cell !important; }
 
 .award-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 176px;
+    grid-template-columns: minmax(0, 1fr) 184px;
     align-items: center;
-    gap: 28px;
+    gap: 32px;
     margin: 1.5em 0;
-    padding: 24px 28px;
-    border: 1px solid #dce5f0;
-    border-left: 3px solid #315aa6;
-    border-radius: 8px;
-    background: #f3f6fb;
-    color: #26364d;
+    padding: 28px 32px;
+    border: 1px solid rgba(127, 210, 221, .28);
+    border-radius: 20px;
+    background:
+        radial-gradient(ellipse at 88% 8%, rgba(88, 208, 201, .48), transparent 46%),
+        radial-gradient(ellipse at 47% 110%, rgba(49, 112, 166, .48), transparent 58%),
+        linear-gradient(118deg, #101e36 0%, #123347 53%, #15565f 100%);
+    color: #f0f8fc;
+    box-shadow: 0 12px 32px rgba(17, 49, 68, .14), inset 0 1px 0 rgba(255, 255, 255, .17);
+    transition: box-shadow .25s ease;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        background: linear-gradient(135deg, rgba(255, 255, 255, .07), transparent 38%, rgba(155, 233, 225, .06));
+        pointer-events: none;
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 340px;
+        height: 340px;
+        right: -100px;
+        top: -230px;
+        border: 1px solid rgba(195, 255, 250, .15);
+        border-radius: 50%;
+        box-shadow: 0 0 0 52px rgba(157, 245, 234, .025), 0 0 0 104px rgba(157, 245, 234, .02);
+        pointer-events: none;
+    }
+    &:hover { box-shadow: 0 16px 40px rgba(17, 49, 68, .19), inset 0 1px 0 rgba(255, 255, 255, .22); }
 
     .award-card__text { min-width: 0; }
     .award-card__eyebrow {
-        margin: 0 0 9px;
-        color: #5f7390;
+        margin: 0 0 12px;
+        color: #a8d6df;
         font-size: 11px;
         font-weight: 600;
-        letter-spacing: .12em;
+        letter-spacing: .17em;
         text-transform: uppercase;
     }
-    .award-card__title { margin: 0 0 10px; font-size: 25px; line-height: 1.2; letter-spacing: -.02em; color: #203c65; }
-    .award-card__result { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 0 0 17px; font-size: 13px; color: #607086; }
-    .award-card__place { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 4px; background: #e7edf7; color: #244b85; font-weight: 700; }
-    .award-card__links { display: flex; flex-wrap: wrap; gap: 9px; }
+    .award-card__title { margin: 0 0 14px; font-size: 30px; line-height: 1.2; letter-spacing: -.025em; color: #f7fcff; font-weight: 700; }
+    .award-card__result { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin: 0 0 22px; font-size: 13px; color: #c4dae6; }
+    .award-card__place { display: inline-flex; align-items: center; gap: 7px; padding: 5px 10px; border: 1px solid rgba(172, 233, 230, .24); border-radius: 7px; background: rgba(134, 223, 219, .10); color: #dbfaf4; font-weight: 700; }
+    .award-card__place i { color: #aae5df; }
+    .award-card__links { display: flex; flex-wrap: wrap; gap: 10px; }
     .award-card__links a {
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        padding: 6px 11px;
-        border: 1px solid #cdd9e9;
-        border-radius: 4px;
-        color: #31558a;
-        background: #fff;
+        padding: 7px 13px;
+        border: 1px solid rgba(225, 246, 255, .20);
+        border-radius: 8px;
+        color: #e9f7fc;
+        background: rgba(224, 242, 255, .08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         text-decoration: none;
         font-size: 12px;
         line-height: 1.5;
         transition: background-color .15s, border-color .15s;
-        &:hover { background: #e9eff8; border-color: #8fa8cc; }
-        &:focus-visible { outline: 2px solid #315aa6; outline-offset: 3px; }
+        &:hover { background: rgba(225, 247, 255, .17); border-color: rgba(220, 251, 250, .48); color: #fff; }
+        &:focus-visible { outline: 2px solid #b2f2e7; outline-offset: 3px; }
     }
-    .award-card__preview { display: block; max-width: 100%; text-align: center; text-decoration: none; }
+    .award-card__preview {
+        display: block;
+        max-width: 100%;
+        padding: 8px 8px 7px;
+        border: 1px solid rgba(231, 255, 251, .25);
+        border-radius: 12px;
+        background: rgba(221, 255, 251, .08);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        text-align: center;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(3, 25, 37, .13), inset 0 1px 0 rgba(255, 255, 255, .12);
+        transition: background-color .2s;
+        &:hover { background: rgba(221, 255, 251, .14); }
+        &:focus-visible { outline: 2px solid #b2f2e7; outline-offset: 3px; }
+    }
     .award-card__preview img {
         display: block;
         width: 100%;
         height: auto;
-        padding: 4px;
-        border: 1px solid #d5dfec;
-        border-radius: 4px;
+        padding: 0;
+        border: 0;
+        border-radius: 5px;
         background: #fff;
-        box-shadow: 0 3px 10px rgba(32, 60, 101, .06);
+        box-shadow: none;
     }
-    .award-card__caption { display: block; margin-top: 6px; color: #77869b; font-size: 10px; letter-spacing: .03em; }
+    .award-card__caption { display: block; margin-top: 8px; color: #d0e9ee; font-size: 10px; letter-spacing: .03em; }
     @media (max-width: 600px) {
         grid-template-columns: minmax(0, 1fr);
-        gap: 20px;
-        padding: 20px;
-        .award-card__title { font-size: 23px; }
-        .award-card__preview { width: 152px; justify-self: start; }
+        gap: 24px;
+        padding: 24px;
+        border-radius: 16px;
+        .award-card__title { font-size: 27px; }
+        .award-card__preview { width: 164px; justify-self: start; }
     }
+    @media (prefers-reduced-motion: reduce) { &, a { transition: none; } }
 }
 
 .profile-gate-overlay {
