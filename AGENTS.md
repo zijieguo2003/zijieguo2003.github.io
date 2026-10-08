@@ -194,6 +194,8 @@ node scripts/verify-live.mjs
 
 ## 维护约定
 
+- 2026-10-08：CCC 2023 论文预览改为用户提供的整体网络架构图 `images/ccc-network-overview.png`，沿用 16:9 contain 完整显示，并链接原图供 lightbox 放大。
+
 - 2026-10-08：依据用户提供的两份 Vision Encoder PDF 扩充加密档案中的 TeleAI 经历，覆盖模型接入、统一评测、数据优化与后训练诊断。后续改写应区分实验结果与尚未验证的设想；附件年份与既有经历时间存在冲突，本次保留既有时间。原始 PDF 和明文不发布。
 
 - 改内容 → 改 `private/profile.json` → `node scripts/profile.mjs publish` → `verify` → 提交推送。
