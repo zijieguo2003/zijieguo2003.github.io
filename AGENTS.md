@@ -38,7 +38,7 @@
 | 口令 | 侧栏头像 3.5 秒内连点 5 次（`attachHiddenEntrance`） | `private/passphrase.txt` |
 | 私链 | `https://zijieguo2003.github.io/#profile=<token>`（`readPrivateLinkKey`） | `private/link-token.txt` |
 
-解锁结果写入 `sessionStorage['zijie-profile-unlocked-v3']`，同会话刷新免输入。
+解锁结果写入 `sessionStorage['zijie-profile-unlocked-v4']`，同会话刷新免输入。
 口令与 token 都不经过服务器（token 在 URL hash 中，浏览器不会发送）。
 
 ---
@@ -193,6 +193,10 @@ node scripts/verify-live.mjs
 ---
 
 ## 维护约定
+
+- 2026-10-09：主页头像更换为用户提供的动漫图，中心裁切保留面部和蝴蝶，发布为 `images/avatar-anime-20261009.png`；公开配置和加密中英文侧栏同步更新。保留原始 `avatar.png` 和现有 favicon，不修改网页图标。
+
+- 2026-10-09：用户要求放大奖项证书预览并突出本人姓名，桌面列宽从 184px 调整为 280px，手机预览从 164px 调整为 200px；卡片补充证书上的成员名单，Zijie Guo 位于首位并加粗，中英文同步，缓存升级为 v4。
 
 - 2026-10-09：按用户提供的 DSH Transparent UI 参考，将奖项卡片改为深海蓝至青绿的多层渐变，叠加光晕、玻璃边框与半透明按钮。只调整 CSS；双语内容、证书放大与解锁流程沿用原实现。
 
