@@ -1,9 +1,56 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'zijie-profile-unlocked-v1';
+  var SESSION_KEY = 'zijie-profile-unlocked-v2';
+  var LANGUAGE_KEY = 'zijie-profile-language';
+  var language = 'en';
+  var activeProfile = null;
+  var publicContent = {};
+  var publicSidebar = '';
+  var openUnlockDialog;
   var PAYLOAD_URL = '/assets/data/profile.enc.json?v=1';
   var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=1';
+
+  function translate(en, zh) { return language === 'zh' ? zh : en; }
+
+  function renderLanguage() {
+    var content = document.querySelector('.page__content');
+    var sidebar = document.querySelector('.profile_box');
+    if (!content || !sidebar) return false;
+    document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
+    if (activeProfile) {
+      content.innerHTML = language === 'zh' ? activeProfile.contentHtmlZh : activeProfile.contentHtml;
+      sidebar.innerHTML = language === 'zh' ? activeProfile.sidebarHtmlZh : activeProfile.sidebarHtml;
+    } else {
+      content.innerHTML = publicContent[language];
+      sidebar.innerHTML = publicSidebar;
+      var name = sidebar.querySelector('.author__name');
+      if (name && language === 'zh') name.textContent = '郭子杰（Zijie Guo）';
+      attachHiddenEntrance(openUnlockDialog);
+    }
+    var labels = {
+      'about-me': ['About Me', '关于我'], research: ['Research', '研究方向'],
+      news: ['News', '最新动态'], publications: ['Publications', '论文发表'],
+      experience: ['Experience', '研究与实习'], education: ['Education', '教育背景'],
+      awards: ['Honors & Awards', '荣誉奖项'], skills: ['Skills', '技能']
+    };
+    document.querySelectorAll('#site-nav a').forEach(function (link) {
+      var key = link.hash.slice(1);
+      if (link.closest('.masthead__menu-home-item')) {
+        link.textContent = translate('Homepage', '主页');
+      } else if (labels[key]) {
+        link.textContent = labels[key][language === 'zh' ? 1 : 0];
+      }
+    });
+    var toggle = document.getElementById('language-toggle');
+    if (toggle) {
+      toggle.textContent = translate('中文', 'English');
+      toggle.setAttribute('aria-label', translate('切换到中文', 'Switch to English'));
+    }
+    refreshImageLightbox();
+    window.dispatchEvent(new Event('resize'));
+    return true;
+  }
 
   function base64ToBytes(value) {
     var binary = window.atob(value);
@@ -66,14 +113,14 @@
     }
     links.addClass('image-popup').magnificPopup({
       type: 'image',
-      tLoading: 'Loading image #%curr%...',
+      tLoading: translate('Loading image #%curr%...', '正在加载图片 #%curr%…'),
       gallery: {
         enabled: true,
         navigateByImgClick: true,
         preload: [0, 1]
       },
       image: {
-        tError: '<a href="%url%">Image #%curr%</a> could not be loaded.'
+        tError: translate('<a href="%url%">Image #%curr%</a> could not be loaded.', '<a href="%url%">图片 #%curr%</a> 加载失败。')
       },
       removalDelay: 500,
       mainClass: 'mfp-zoom-in',
@@ -89,13 +136,11 @@
       return false;
     }
 
-    content.innerHTML = profile.contentHtml;
-    sidebar.innerHTML = profile.sidebarHtml;
+    if (!profile.contentHtmlZh || !profile.sidebarHtmlZh) return false;
+    activeProfile = profile;
     document.documentElement.classList.remove('profile-locked');
     document.documentElement.classList.add('profile-unlocked');
-    refreshImageLightbox();
-    window.dispatchEvent(new Event('resize'));
-    return true;
+    return renderLanguage();
   }
 
   function restoreSession() {
@@ -106,7 +151,7 @@
       }
       return showFullProfile(JSON.parse(stored));
     } catch (error) {
-      window.sessionStorage.removeItem(SESSION_KEY);
+      try { window.sessionStorage.removeItem(SESSION_KEY); } catch (storageError) { /* Storage may be disabled. */ }
       return false;
     }
   }
@@ -138,6 +183,11 @@
     var close = overlay.querySelector('.profile-gate-close');
 
     function openDialog() {
+      overlay.querySelector('#profile-gate-title').textContent = translate('View full profile', '访问完整主页');
+      dialog.querySelector('p').textContent = translate('Please enter the access password.', '请输入访问口令。');
+      form.querySelector('label').textContent = translate('Access password', '访问口令');
+      submit.textContent = translate('Unlock profile', '解锁主页');
+      close.setAttribute('aria-label', translate('Close', '关闭'));
       overlay.hidden = false;
       message.textContent = '';
       window.setTimeout(function () { input.focus(); }, 0);
@@ -167,17 +217,17 @@
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
       submit.disabled = true;
-      message.textContent = '正在验证…';
+      message.textContent = translate('Verifying…', '正在验证…');
 
       try {
         var profile = await decryptProfile(input.value);
-        window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(profile));
+        try { window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(profile)); } catch (storageError) { /* Unlock also works without storage. */ }
         showFullProfile(profile);
         closeDialog();
       } catch (error) {
         message.textContent = error && error.message === 'payload'
-          ? '暂时无法读取加密内容，请稍后重试。'
-          : '口令不正确，请重新输入。';
+          ? translate('Could not load the profile. Please try again later.', '暂时无法读取加密内容，请稍后重试。')
+          : translate('Incorrect password. Please try again.', '口令不正确，请重新输入。');
         input.select();
       } finally {
         submit.disabled = false;
@@ -215,6 +265,26 @@
   }
 
   async function initialize() {
+    var content = document.querySelector('.page__content');
+    var sidebar = document.querySelector('.profile_box');
+    if (!content || !sidebar) return;
+    var chinese = document.getElementById('profile-public-zh');
+    publicContent.zh = chinese ? chinese.innerHTML : content.innerHTML;
+    if (chinese) chinese.remove();
+    publicContent.en = content.innerHTML;
+    publicSidebar = sidebar.innerHTML;
+    try { language = window.localStorage.getItem(LANGUAGE_KEY) === 'zh' ? 'zh' : 'en'; } catch (error) { /* Default to English. */ }
+    openUnlockDialog = createUnlockDialog();
+    renderLanguage();
+    var toggle = document.getElementById('language-toggle');
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.addEventListener('click', function () {
+        language = language === 'en' ? 'zh' : 'en';
+        try { window.localStorage.setItem(LANGUAGE_KEY, language); } catch (error) { /* Switching works without storage. */ }
+        renderLanguage();
+      });
+    }
     var linkKey = readPrivateLinkKey();
     if (restoreSession()) {
       if (linkKey) {
@@ -226,7 +296,7 @@
     if (linkKey) {
       try {
         var linkedProfile = await decryptProfile(linkKey, LINK_PAYLOAD_URL);
-        window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(linkedProfile));
+        try { window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(linkedProfile)); } catch (storageError) { /* Optional cache. */ }
         showFullProfile(linkedProfile);
         clearPrivateLinkKey();
         return;
@@ -235,8 +305,6 @@
       }
     }
 
-    var openDialog = createUnlockDialog();
-    attachHiddenEntrance(openDialog);
   }
 
   if (document.readyState === 'loading') {

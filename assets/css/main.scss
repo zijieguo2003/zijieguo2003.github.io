@@ -111,6 +111,58 @@
     }
 }
 
+.masthead__menu {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    padding-right: 4rem;
+}
+
+#site-nav { flex: 1; min-width: 0; }
+
+.language-toggle {
+    flex-shrink: 0;
+    padding: .35rem .65rem;
+    border: 1px solid #d7dfe9;
+    border-radius: 5px;
+    color: #315aa6;
+    background: #fff;
+    font: inherit;
+    font-size: .85rem;
+    line-height: 1.4;
+    cursor: pointer;
+
+    &[hidden] { display: none; }
+    &:hover { background: #f0f4fa; }
+    &:focus-visible { outline: 2px solid #315aa6; outline-offset: 3px; }
+}
+
+.profile-locked .masthead__menu-home-item { display: table-cell !important; }
+
+.award-card {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+
+    .award-card__text { flex: 1; min-width: 0; }
+    .award-card__text p { margin: 0 0 .45em; }
+    .award-card__preview { display: block; flex: 0 0 220px; max-width: 100%; }
+    .award-card__preview img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        background: #fff;
+    }
+
+    @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: flex-start;
+        .award-card__preview { flex: none; width: 220px; }
+    }
+}
+
 .profile-gate-overlay {
     position: fixed;
     inset: 0;
@@ -257,9 +309,9 @@ h1:before, .anchor:before {
 }
 
 @include breakpoint($medium) {
-    .masthead__inner-wrap { padding-right: 5.5em; }
+    .masthead__inner-wrap { padding-right: .5em; }
 }
 
 @media print {
-    .page-views { display: none !important; }
+    .page-views, .language-toggle { display: none !important; }
 }

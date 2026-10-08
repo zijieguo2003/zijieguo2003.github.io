@@ -162,8 +162,8 @@ async function publish({ iterations, showSecrets, rotatePassphrase, rotateToken 
   if (!existsSync(plainPath)) throw new Error(`找不到明文源文件 ${PATHS.plaintext}（这是内容源，不能少）`);
   const plain = readFileSync(plainPath);
   const parsed = JSON.parse(plain.toString('utf8'));
-  if (!parsed.contentHtml || !parsed.sidebarHtml) {
-    throw new Error(`${PATHS.plaintext} 缺少 contentHtml / sidebarHtml`);
+  if (!parsed.contentHtml || !parsed.sidebarHtml || !parsed.contentHtmlZh || !parsed.sidebarHtmlZh) {
+    throw new Error(`${PATHS.plaintext} 缺少中英文正文或侧栏`);
   }
 
   const passphrase = readSecret(PATHS.passphrase, '访问口令', generatePassphrase, rotatePassphrase);
@@ -213,7 +213,7 @@ async function verify({ showSecrets }) {
       const plain = await decryptPayload(item.payload, secret);
       const text = new TextDecoder('utf-8', { fatal: true }).decode(plain);
       const parsed = JSON.parse(text);
-      if (!parsed.contentHtml || !parsed.sidebarHtml) throw new Error('缺少 contentHtml / sidebarHtml');
+      if (!parsed.contentHtml || !parsed.sidebarHtml || !parsed.contentHtmlZh || !parsed.sidebarHtmlZh) throw new Error('缺少中英文正文或侧栏');
       const identical = expected ? Buffer.compare(plain, expected) === 0 : null;
       ok(`${item.payload}（${item.label}）明文 ${plain.length} 字节，contentHtml ${parsed.contentHtml.length} 字符` +
         (identical === null ? '' : `，与 ${PATHS.plaintext} 逐字节一致：${identical}`));
