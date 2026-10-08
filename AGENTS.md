@@ -194,6 +194,8 @@ node scripts/verify-live.mjs
 
 ## 维护约定
 
+- 2026-10-08：按用户确认，将 TeleAI 岗位统一为多模态算法工程师（实习），以 TeleMM 基座视觉理解能力研发为职责总述，双语同步更新简介、动态与经历。官方产品资料仅用于产品定位；个人实验数据不表述为已发布模型成绩，未确认的产品版本／上线贡献不补写。
+
 - 2026-10-08：添加顶部中英切换按钮，localStorage `zijie-profile-language` 记忆语言。公开中文学历位于 `_pages/about.md` 的 template；私密中文正文与侧栏保存在明文源的 `contentHtmlZh` / `sidebarHtmlZh`，与英文一起加密。修改内容需同步双语。解锁缓存升级到 v2，旧会话需重新解锁，口令和私链不变。奖项卡片改为文字＋220px 证书缩略图，手机端纵向排列，支持放大。
 
 - 2026-10-08：CCC 2023 论文预览改为用户提供的整体网络架构图 `images/ccc-network-overview.png`，沿用 16:9 contain 完整显示，并链接原图供 lightbox 放大。
