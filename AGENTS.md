@@ -194,6 +194,8 @@ node scripts/verify-live.mjs
 
 ## 维护约定
 
+- 2026-10-08：依据用户提供的两份 Vision Encoder PDF 扩充加密档案中的 TeleAI 经历，覆盖模型接入、统一评测、数据优化与后训练诊断。后续改写应区分实验结果与尚未验证的设想；附件年份与既有经历时间存在冲突，本次保留既有时间。原始 PDF 和明文不发布。
+
 - 改内容 → 改 `private/profile.json` → `node scripts/profile.mjs publish` → `verify` → 提交推送。
 - **每次实质性修改后更新本文件**（新增章节、改密文格式、换工具链、发现新坑都要写进来）。
 - 不要提交 `private/` 与 `tmp/`；新增临时目录时同步更新 `.gitignore` 与 `_config.yml` 的 `exclude`。
