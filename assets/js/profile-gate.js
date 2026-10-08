@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'zijie-profile-unlocked-v2';
+  var SESSION_KEY = 'zijie-profile-unlocked-v3';
   var LANGUAGE_KEY = 'zijie-profile-language';
   var language = 'en';
   var activeProfile = null;

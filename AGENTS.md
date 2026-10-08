@@ -38,7 +38,7 @@
 | 口令 | 侧栏头像 3.5 秒内连点 5 次（`attachHiddenEntrance`） | `private/passphrase.txt` |
 | 私链 | `https://zijieguo2003.github.io/#profile=<token>`（`readPrivateLinkKey`） | `private/link-token.txt` |
 
-解锁结果写入 `sessionStorage['zijie-profile-unlocked-v2']`，同会话刷新免输入。
+解锁结果写入 `sessionStorage['zijie-profile-unlocked-v3']`，同会话刷新免输入。
 口令与 token 都不经过服务器（token 在 URL hash 中，浏览器不会发送）。
 
 ---
@@ -193,6 +193,8 @@ node scripts/verify-live.mjs
 ---
 
 ## 维护约定
+
+- 2026-10-09：获奖卡片改为浅蓝底、蓝色侧边线、赛事标题／名次标签／操作链接分层布局，证书预览桌面 176px、手机 152px。中英文同步更新，缓存升级到 v3 以替换旧卡片；口令和私链不变。
 
 - 2026-10-08：按用户确认，将 TeleAI 岗位统一为多模态算法工程师（实习），以 TeleMM 基座视觉理解能力研发为职责总述，双语同步更新简介、动态与经历。官方产品资料仅用于产品定位；个人实验数据不表述为已发布模型成绩，未确认的产品版本／上线贡献不补写。
 
