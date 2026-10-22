@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'zijie-profile-unlocked-v4';
+  var SESSION_KEY = 'zijie-profile-unlocked-v5';
   var LANGUAGE_KEY = 'zijie-profile-language';
   var language = 'en';
   var activeProfile = null;
   var publicContent = {};
   var publicSidebar = '';
   var openUnlockDialog;
-  var PAYLOAD_URL = '/assets/data/profile.enc.json?v=1';
-  var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=1';
+  var PAYLOAD_URL = '/assets/data/profile.enc.json?v=20261022';
+  var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=20261022';
 
   function translate(en, zh) { return language === 'zh' ? zh : en; }
 

@@ -219,3 +219,5 @@ node scripts/verify-live.mjs
 - 改内容 → 改 `private/profile.json` → `node scripts/profile.mjs publish` → `verify` → 提交推送。
 - **每次实质性修改后更新本文件**（新增章节、改密文格式、换工具链、发现新坑都要写进来）。
 - 不要提交 `private/` 与 `tmp/`；新增临时目录时同步更新 `.gitignore` 与 `_config.yml` 的 `exclude`。
+
+- 2026-10-22：按本人确认补入两篇 ICLR 2027 共同一作在投研究，中英文同步，标题与摘要依据本地匿名稿；状态明确为在投而非录用。新增 private/profile.json 的 publicationRecords 供简历读取；完整档案继续作为内容主源，简历按岗位筛选。不公开上传匿名稿或完整作者表。解锁会话缓存升为 v5，密文 URL 增加版本戳。
