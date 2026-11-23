@@ -38,7 +38,7 @@
 | 口令 | 侧栏头像 3.5 秒内连点 5 次（`attachHiddenEntrance`） | `private/passphrase.txt` |
 | 私链 | `https://zijieguo2003.github.io/#profile=<token>`（`readPrivateLinkKey`） | `private/link-token.txt` |
 
-解锁结果写入 `sessionStorage['zijie-profile-unlocked-v7']`，同会话刷新免输入。
+解锁结果写入 `sessionStorage['zijie-profile-unlocked-v8']`，同会话刷新免输入。
 口令与 token 都不经过服务器（token 在 URL hash 中，浏览器不会发送）。
 
 ---
@@ -227,3 +227,5 @@ node scripts/verify-live.mjs
 - 2026-11-23：解锁后的身份入口移至顶栏，首屏使用双语姓名、联系方式与静态编织曲面插图。字体在本地提供，研究与论文区采用分栏版式。会话缓存升至 v7。
 
 - 2026-11-23：全站文字优先使用本机 Anthropic Serif Web Text。本字体不含汉字，中文依次使用系统宋体类字体。字体文件不随站点分发。
+
+- 2026-11-23：解锁首屏以程序渐变渲染，兼容静态背景、减少动态效果及手动暂停。八款配色保存在访客本地，默认青瓷稻金。精选研究的双语文字与图像引用来自加密档案；语言重绘复用画布。

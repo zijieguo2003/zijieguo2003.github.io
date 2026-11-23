@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'zijie-profile-unlocked-v7';
+  var SESSION_KEY = 'zijie-profile-unlocked-v8';
   var LANGUAGE_KEY = 'zijie-profile-language';
   var language = 'en';
   var activeProfile = null;
   var publicContent = {};
   var publicSidebar = '';
   var openUnlockDialog;
-  var PAYLOAD_URL = '/assets/data/profile.enc.json?v=20261123b';
-  var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=20261123b';
+  var PAYLOAD_URL = '/assets/data/profile.enc.json?v=20261123c';
+  var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=20261123c';
 
   function translate(en, zh) { return language === 'zh' ? zh : en; }
 
@@ -51,6 +51,7 @@
       toggle.textContent = translate('中文', 'English');
       toggle.setAttribute('aria-label', translate('切换到中文', 'Switch to English'));
     }
+    if (activeProfile && window.mountProfileShowcase) window.mountProfileShowcase(content, language);
     refreshImageLightbox();
     window.dispatchEvent(new Event('resize'));
     return true;
