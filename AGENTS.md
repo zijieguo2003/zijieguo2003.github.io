@@ -38,7 +38,7 @@
 | 口令 | 侧栏头像 3.5 秒内连点 5 次（`attachHiddenEntrance`） | `private/passphrase.txt` |
 | 私链 | `https://zijieguo2003.github.io/#profile=<token>`（`readPrivateLinkKey`） | `private/link-token.txt` |
 
-解锁结果写入 `sessionStorage['zijie-profile-unlocked-v6']`，同会话刷新免输入。
+解锁结果写入 `sessionStorage['zijie-profile-unlocked-v7']`，同会话刷新免输入。
 口令与 token 都不经过服务器（token 在 URL hash 中，浏览器不会发送）。
 
 ---
@@ -223,3 +223,5 @@ node scripts/verify-live.mjs
 - 2026-10-22：按本人确认补入两篇 ICLR 2027 共同一作在投研究，中英文同步，标题与摘要依据本地匿名稿；状态明确为在投而非录用。新增 private/profile.json 的 publicationRecords 供简历读取；完整档案继续作为内容主源，简历按岗位筛选。不公开上传匿名稿或完整作者表。解锁会话缓存升为 v5，密文 URL 增加版本戳。
 
 - 2026-11-23：解锁后的双语档案采用独立的 `_sass/_unlocked-profile.scss`，以 `.profile-unlocked` 限定样式。正文用语义分区保留导航锚点，首屏展示最新研究岗位。会话缓存升至 v6。
+
+- 2026-11-23：解锁后的身份入口移至顶栏，首屏使用双语姓名、联系方式与静态编织曲面插图。字体在本地提供，研究与论文区采用分栏版式。会话缓存升至 v7。

@@ -1,15 +1,15 @@
 (function () {
   'use strict';
 
-  var SESSION_KEY = 'zijie-profile-unlocked-v6';
+  var SESSION_KEY = 'zijie-profile-unlocked-v7';
   var LANGUAGE_KEY = 'zijie-profile-language';
   var language = 'en';
   var activeProfile = null;
   var publicContent = {};
   var publicSidebar = '';
   var openUnlockDialog;
-  var PAYLOAD_URL = '/assets/data/profile.enc.json?v=20261123';
-  var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=20261123';
+  var PAYLOAD_URL = '/assets/data/profile.enc.json?v=20261123b';
+  var LINK_PAYLOAD_URL = '/assets/data/profile.link.enc.json?v=20261123b';
 
   function translate(en, zh) { return language === 'zh' ? zh : en; }
 
@@ -20,6 +20,10 @@
     document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en';
     if (activeProfile) {
       content.innerHTML = language === 'zh' ? activeProfile.contentHtmlZh : activeProfile.contentHtml;
+      var nav = document.getElementById('site-nav');
+      if (nav && sidebar.parentElement !== nav.parentElement) {
+        nav.parentElement.insertBefore(sidebar, nav);
+      }
       sidebar.innerHTML = language === 'zh' ? activeProfile.sidebarHtmlZh : activeProfile.sidebarHtml;
     } else {
       content.innerHTML = publicContent[language];
