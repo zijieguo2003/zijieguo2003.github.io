@@ -7,11 +7,11 @@
 }
 
 .profile-unlocked {
-  --paper: #f8f7ef;
-  --wash: #b8cfbc;
-  --deep: #366f64;
-  --glow: #eac781;
-  --ink: #203b32;
+  --paper: #f6f9fc;
+  --wash: #b8deed;
+  --deep: #2851a4;
+  --glow: #8ce5de;
+  --ink: #142b48;
   --muted: color-mix(in srgb, var(--ink) 78%, var(--paper));
   --rule: color-mix(in srgb, var(--ink) 24%, var(--paper));
   --accent: color-mix(in srgb, var(--ink) 80%, var(--glow));

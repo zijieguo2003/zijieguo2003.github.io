@@ -13,7 +13,7 @@ window.mountProfileShowcase = (function () {
     ['aurora', '夜航极光', 'Night aurora', '#111C2D', '#ECF2F5', '#344768', '#286E78', '#92D8B2']
   ];
   const storageKey = 'zijie-profile-palette';
-  let palette = palettes[2];
+  let palette = palettes.find(entry => entry[0] === 'cobalt');
   try {
     palette = palettes.find(entry => entry[0] === localStorage.getItem(storageKey)) || palette;
   } catch (_) { /* Storage is optional. */ }
